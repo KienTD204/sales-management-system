@@ -1,0 +1,955 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="O13ubLsMI0kF532l2XQ7">
+    <mxGraphModel dx="1487" dy="1345" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-14" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-13" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="795" y="100" />
+              <mxPoint x="509" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-16" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-15" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="385" y="100" />
+              <mxPoint x="135" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-18" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-17" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="385" y="100" />
+              <mxPoint x="625" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-20" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-19" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="385" y="100" />
+              <mxPoint x="855" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-22" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="795" y="120" />
+              <mxPoint x="795" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#343551);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#001DBC;fontSize=18;fontStyle=1" value="Website Quản Lý Bán Hàng" vertex="1">
+          <mxGeometry height="60" width="240" x="680" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-41" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" target="VtucAM20ck2O_b3Ok1sz-40" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#384B51);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#001DBC;fontSize=16;fontStyle=1;gradientColor=none;" value="Quản Lý Dữ Liệu Nền Tảng" vertex="1">
+          <mxGeometry height="60" width="190" x="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-31" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-23" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-36" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-35" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-39" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-38" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="435" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#384B51);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#001DBC;fontSize=16;fontStyle=1" value="Quản Lý Hệ Thống" vertex="1">
+          <mxGeometry height="60" width="190" x="170" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-76" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VtucAM20ck2O_b3Ok1sz-75" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#384B51);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#001DBC;fontSize=16;fontStyle=1" value="Quản Lý Tồn Kho" vertex="1">
+          <mxGeometry height="60" width="190" x="960" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#384B51);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#001DBC;fontSize=16;fontStyle=1" value="Báo Cáo &amp;amp; Thống Kê" vertex="1">
+          <mxGeometry height="60" width="190" x="1230" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#384B51);fontColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=#B20000;fontSize=16;fontStyle=1;gradientColor=none;" value="Nghiệp Vụ Bán Hàng" vertex="1">
+          <mxGeometry height="60" width="190" x="700" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-23" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=light-dark(#0050EF,#198CC4);strokeColor=#001DBC;fontColor=default;rounded=1;fontStyle=1;" value="Authentication" vertex="1">
+          <mxGeometry height="30" width="120" x="230" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-35" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=light-dark(#0050EF,#198CC4);strokeColor=#001DBC;fontColor=default;rounded=1;fontStyle=1;" value="&lt;span style=&quot;&quot;&gt;User &amp;amp; Role&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="230" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-37" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#6a00ff;strokeColor=#3700CC;" target="VtucAM20ck2O_b3Ok1sz-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-38" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=light-dark(#0050EF,#198CC4);strokeColor=#001DBC;fontColor=default;rounded=1;fontStyle=1;" value="Subscription" vertex="1">
+          <mxGeometry height="30" width="120" x="230" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-40" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=default;" value="Product" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-49" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-13" style="endArrow=classic;html=1;rounded=0;exitX=0.153;exitY=1.036;exitDx=0;exitDy=0;fillColor=#dae8fc;strokeColor=light-dark(#6c8ebf, #ffffff);labelBackgroundColor=light-dark(#FFFFFF,#FFFFFF);endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="469.07" y="375" />
+            </Array>
+            <mxPoint x="490" y="535" as="sourcePoint" />
+            <mxPoint x="500" y="375" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-52" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.153;exitY=1.036;exitDx=0;exitDy=0;fillColor=#dae8fc;strokeColor=light-dark(#6c8ebf, #ffffff);labelBackgroundColor=light-dark(#FFFFFF,#FFFFFF);endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="469.07" y="433" />
+            </Array>
+            <mxPoint x="469" y="280" as="sourcePoint" />
+            <mxPoint x="500" y="433" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-54" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.153;exitY=1.036;exitDx=0;exitDy=0;fillColor=#dae8fc;strokeColor=light-dark(#6c8ebf, #ffffff);labelBackgroundColor=light-dark(#FFFFFF,#FFFFFF);endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="469.07" y="493" />
+            </Array>
+            <mxPoint x="469" y="340" as="sourcePoint" />
+            <mxPoint x="500" y="493" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-55" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=default;" value="Category" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-56" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=default;" value="Customer" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-57" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=default;" value="Employee" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-59" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#1ba1e2;strokeColor=#006EAF;" target="VtucAM20ck2O_b3Ok1sz-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-60" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1BA1E2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=light-dark(#ffffff, #f8f7f7);" value="Cart &amp;amp; Sales" vertex="1">
+          <mxGeometry height="30" width="120" x="755.5" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-61" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;fillColor=#dae8fc;strokeColor=light-dark(#6c8ebf, #ffffff);labelBackgroundColor=light-dark(#FFFFFF,#FFFFFF);endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="VtucAM20ck2O_b3Ok1sz-60" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="315" />
+            </Array>
+            <mxPoint x="720" y="221.38" as="sourcePoint" />
+            <mxPoint x="755.5" y="433" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-62" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-21" style="endArrow=classic;html=1;rounded=0;fillColor=#dae8fc;strokeColor=light-dark(#6c8ebf, #ffffff);labelBackgroundColor=light-dark(#FFFFFF,#FFFFFF);endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.106;exitY=1.023;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-65" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="495" />
+            </Array>
+            <mxPoint x="720" y="300" as="sourcePoint" />
+            <mxPoint x="745.5" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-63" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=light-dark(#ffffff, #f8f7f7);" value="Order" vertex="1">
+          <mxGeometry height="30" width="120" x="755.5" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-64" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=light-dark(#ffffff, #f8f7f7);" value="Payment" vertex="1">
+          <mxGeometry height="30" width="120" x="755.5" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-65" parent="1" style="whiteSpace=wrap;html=1;fontSize=14;fillColor=#1ba1e2;strokeColor=#006EAF;rounded=1;fontStyle=1;fontColor=light-dark(#ffffff, #f8f7f7);" value="Invoice" vertex="1">
+          <mxGeometry height="30" width="120" x="755.5" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-66" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#1ba1e2;strokeColor=#006EAF;" target="VtucAM20ck2O_b3Ok1sz-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-69" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-21" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.102;exitY=1.06;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-63" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="375" />
+            </Array>
+            <mxPoint x="690" y="420" as="sourcePoint" />
+            <mxPoint x="740" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-70" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-21" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.102;exitY=1.023;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-64" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="719.38" y="435" />
+            </Array>
+            <mxPoint x="690" y="480" as="sourcePoint" />
+            <mxPoint x="740" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-75" parent="1" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=light-dark(#0050EF,#198CC4);strokeColor=#001DBC;fontColor=light-dark(#FFFFFF,#FFFFFF);rounded=1;fontStyle=1;" value="Inventory" vertex="1">
+          <mxGeometry height="30" width="120" x="1020" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-78" parent="1" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=light-dark(#0050EF,#198CC4);strokeColor=#001DBC;fontColor=light-dark(#FFFFFF,#FFFFFF);rounded=1;fontStyle=1;" value="Inventory" vertex="1">
+          <mxGeometry height="30" width="120" x="1285" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-79" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="VtucAM20ck2O_b3Ok1sz-78" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1254.13" y="315" />
+            </Array>
+            <mxPoint x="1254.13" y="220" as="sourcePoint" />
+            <mxPoint x="1280" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-82" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Authentication" vertex="1">
+          <mxGeometry height="60" width="190" x="170" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-83" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Đăng Ký Tài Khoản&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-84" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-82" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-83" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="720" />
+            </Array>
+            <mxPoint x="260" y="670" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-85" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Đăng Nhập&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-86" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-85" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="771" />
+            </Array>
+            <mxPoint x="179" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-87" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Quản Lý Phiên Đăng Nhập&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-88" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-87" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="921" />
+            </Array>
+            <mxPoint x="179" y="870" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-89" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Mã Hóa Mật Khẩu&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-90" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-89" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="871" />
+            </Array>
+            <mxPoint x="179" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-91" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Đăng xuất&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-92" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-91" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="821" />
+            </Array>
+            <mxPoint x="179" y="770" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-98" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="User &amp;amp; Role" vertex="1">
+          <mxGeometry height="60" width="190" x="420" y="609.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-99" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Quản Lý User&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="699.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-100" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-98" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-99" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="719.5" />
+            </Array>
+            <mxPoint x="510" y="669.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-101" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Gán Vai Trò&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="750.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-102" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-101" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="770.5" />
+            </Array>
+            <mxPoint x="429" y="719.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-104" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Kiểm Soát Truy Cập&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="850.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-105" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-104" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="870.5" />
+            </Array>
+            <mxPoint x="429" y="819.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-106" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Phân Quyền Chức Năng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="800.5" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-107" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-106" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="820.5" />
+            </Array>
+            <mxPoint x="429" y="769.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-109" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Product Management" vertex="1">
+          <mxGeometry height="60" width="190" x="670" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-110" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thêm Sản Phẩm&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-111" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-109" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-110" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="720" />
+            </Array>
+            <mxPoint x="760" y="670" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-112" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Sửa Sản Phẩm&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-113" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-112" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="771" />
+            </Array>
+            <mxPoint x="679" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-114" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Tìm Kiếm / Lọc&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-115" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-114" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="921" />
+            </Array>
+            <mxPoint x="679" y="870" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-116" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xem Danh Sách&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-117" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-116" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="871" />
+            </Array>
+            <mxPoint x="679" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-118" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xóa Sản Phẩm&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-119" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-118" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="821" />
+            </Array>
+            <mxPoint x="679" y="770" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-120" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Quản Lý Hình Ảnh" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="952" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-121" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-109" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.993;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-120" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="971" />
+            </Array>
+            <mxPoint x="680" y="880" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-122" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Category Management" vertex="1">
+          <mxGeometry height="60" width="190" x="910" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-123" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thêm Danh mục&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-124" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-122" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-123" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="720" />
+            </Array>
+            <mxPoint x="1000" y="670" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-125" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xem Danh Mục&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-126" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-125" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="771" />
+            </Array>
+            <mxPoint x="919" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-127" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Kiểm tra ràng buộc sản phẩm" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-128" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-127" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="921" />
+            </Array>
+            <mxPoint x="919" y="870" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-129" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Sửa Danh Mục&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-130" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-129" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="871" />
+            </Array>
+            <mxPoint x="919" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-131" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xóa Danh Mục&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-132" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-131" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="821" />
+            </Array>
+            <mxPoint x="919" y="770" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-134" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="&lt;h3 class=&quot;PDq2pG_selectionAnchorContainer&quot;&gt;Customer Management&lt;/h3&gt;&lt;pre class=&quot;overflow-visible! px-0!&quot;&gt;&lt;div class=&quot;relative w-full mt-4 mb-1&quot;&gt;&lt;div class=&quot;&quot;&gt;&lt;div class=&quot;contents&quot;&gt;&lt;div class=&quot;relative&quot;&gt;&lt;div class=&quot;h-full min-h-0 min-w-0&quot;&gt;&lt;div class=&quot;h-full min-h-0 min-w-0&quot;&gt;&lt;div class=&quot;border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl&quot;&gt;&lt;div class=&quot;h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback&quot;&gt;&lt;div class=&quot;pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1&quot;&gt;&lt;/div&gt;&lt;div class=&quot;relative&quot;&gt;&lt;div class=&quot;pe-11 pt-3&quot;&gt;&lt;div class=&quot;relative z-0 flex max-w-full&quot;&gt;&lt;div id=&quot;code-block-viewer&quot; dir=&quot;ltr&quot; class=&quot;q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼs ͼ16&quot;&gt;&lt;div class=&quot;cm-scroller&quot;&gt;&lt;pre class=&quot;cm-content q9tKkq_readonly m-0&quot;&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="1140" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-135" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thêm Khách Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1170" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-136" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-134" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-135" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="720" />
+            </Array>
+            <mxPoint x="1230" y="670" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-137" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xóa Khách Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1170" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-138" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-137" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="771" />
+            </Array>
+            <mxPoint x="1149" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-139" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Tra cứu lịch sử mua hàng" vertex="1">
+          <mxGeometry height="40" width="160" x="1170" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-140" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-139" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="921" />
+            </Array>
+            <mxPoint x="1149" y="870" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-141" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Tìm Kiếm Khách Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1170" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-142" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-141" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="871" />
+            </Array>
+            <mxPoint x="1149" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-143" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Sửa Khách Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1170" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-144" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-143" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="821" />
+            </Array>
+            <mxPoint x="1149" y="770" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-145" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Cart &amp;amp; Sales" vertex="1">
+          <mxGeometry height="60" width="190" x="1370" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-146" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Chọn Sản Phẩm&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-147" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-145" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-146" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="720" />
+            </Array>
+            <mxPoint x="1460" y="670" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-148" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thêm Vào Giỏ Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="751" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-149" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-148" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="771" />
+            </Array>
+            <mxPoint x="1379" y="720" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-150" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Kiểm Tra Tồn Kho&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="901" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-151" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-150" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="921" />
+            </Array>
+            <mxPoint x="1379" y="870" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-152" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xóa Khỏi Giỏ&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-153" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-152" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="871" />
+            </Array>
+            <mxPoint x="1379" y="820" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-154" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Tăng/ Giảm Số Lượng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-155" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-154" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="821" />
+            </Array>
+            <mxPoint x="1379" y="770" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-156" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Tính Tổng Tiền" vertex="1">
+          <mxGeometry height="40" width="160" x="1400" y="952" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-157" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-145" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.993;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-156" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="971" />
+            </Array>
+            <mxPoint x="1380" y="880" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-158" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Order Management" vertex="1">
+          <mxGeometry height="60" width="190" x="170" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-159" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Tạo Đơn Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-160" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-158" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-159" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1150" />
+            </Array>
+            <mxPoint x="260" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-161" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xem Danh Sách Đơn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-162" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-161" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1201" />
+            </Array>
+            <mxPoint x="179" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-163" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Cập Nhật Trạng Thái&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-164" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-163" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1301" />
+            </Array>
+            <mxPoint x="179" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-165" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Xem Chi Tiết Đơn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-166" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-165" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1251" />
+            </Array>
+            <mxPoint x="179" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-167" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Payment" vertex="1">
+          <mxGeometry height="60" width="190" x="420" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-168" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thanh Toán Tiền Mặt&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-169" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-167" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-168" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="1150" />
+            </Array>
+            <mxPoint x="510" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-170" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thanh Toán Chuyển Khoản&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-171" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-170" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="1201" />
+            </Array>
+            <mxPoint x="429" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-172" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Cập Nhật Trạng Thái Thanh Toán&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-173" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-172" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="1301" />
+            </Array>
+            <mxPoint x="429" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-174" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Lưu Giao Dịch&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="450" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-175" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-174" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="1251" />
+            </Array>
+            <mxPoint x="429" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-176" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Invoice" vertex="1">
+          <mxGeometry height="60" width="190" x="670" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-177" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Sinh Mã Hóa Đơn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-178" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-176" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-177" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="1150" />
+            </Array>
+            <mxPoint x="760" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-179" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Lấy Thống Tin Đơn Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-180" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-179" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="1201" />
+            </Array>
+            <mxPoint x="679" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-181" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;In Hóa Đơn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-182" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-181" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="1301" />
+            </Array>
+            <mxPoint x="679" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-183" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Hiển Thị Hóa Đơn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="700" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-184" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-183" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="1251" />
+            </Array>
+            <mxPoint x="679" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-185" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Employee Management" vertex="1">
+          <mxGeometry height="60" width="190" x="910" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-186" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Thêm Nhân Viên&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-187" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-185" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-186" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="1150" />
+            </Array>
+            <mxPoint x="1000" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-188" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Sửa Thông Tin Nhân Viên&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-189" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-188" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="1201" />
+            </Array>
+            <mxPoint x="919" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-190" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Gán Quyền&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="1331" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-191" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-190" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="1351" />
+            </Array>
+            <mxPoint x="919" y="1300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-192" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Mở Tài Khoản&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-193" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-192" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="1301" />
+            </Array>
+            <mxPoint x="919" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-194" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Khóa Tài Khoản&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="940" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-195" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-194" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="1251" />
+            </Array>
+            <mxPoint x="919" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-196" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Inventory" vertex="1">
+          <mxGeometry height="60" width="190" x="1155" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-197" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Theo Dõi Số Lượng Tồn Kho&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1185" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-198" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-196" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-197" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="1150" />
+            </Array>
+            <mxPoint x="1245" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-199" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Trừ Tồn Kho&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1185" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-200" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-199" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="1201" />
+            </Array>
+            <mxPoint x="1164" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-201" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Kiểm Tra Mức Tồn&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1185" y="1331" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-202" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-201" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="1351" />
+            </Array>
+            <mxPoint x="1164" y="1300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-203" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Cảnh Báo Sắp Hết Hàng" vertex="1">
+          <mxGeometry height="40" width="160" x="1185" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-204" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-203" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="1301" />
+            </Array>
+            <mxPoint x="1164" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-205" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Hoàn Tồn Kho&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1185" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-206" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-205" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="1251" />
+            </Array>
+            <mxPoint x="1164" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-207" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Report &amp;amp; Dashboard" vertex="1">
+          <mxGeometry height="60" width="190" x="1385" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-208" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Doanh Thu Theo Ngày&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-209" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-207" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-208" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1150" />
+            </Array>
+            <mxPoint x="1475" y="1100" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-210" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Doanh Thu Theo Tuần&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1181" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-211" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-210" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1201" />
+            </Array>
+            <mxPoint x="1394" y="1150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-212" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Tổng Số Đơn Hàng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1331" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-213" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-212" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1351" />
+            </Array>
+            <mxPoint x="1394" y="1300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-214" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Doanh Thu Theo Năm&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1281" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-215" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-214" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1301" />
+            </Array>
+            <mxPoint x="1394" y="1250" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-216" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Doanh Thu Theo Tháng&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1231" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-217" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-216" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1251" />
+            </Array>
+            <mxPoint x="1394" y="1200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-218" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1;fontSize=14;" value="Top 5 Sản Phẩm Bán Chạy" vertex="1">
+          <mxGeometry height="40" width="160" x="1415" y="1382" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-219" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-207" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.993;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-218" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1385" y="1401" />
+            </Array>
+            <mxPoint x="1395" y="1310" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-220" parent="1" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#6D8764,#876B53);fontColor=default;strokeColor=#3A5431;fontSize=16;fontStyle=1" value="Subscription" vertex="1">
+          <mxGeometry height="60" width="190" x="170" y="1400" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-221" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Gói Standard&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1490" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-222" edge="1" parent="1" source="VtucAM20ck2O_b3Ok1sz-220" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-221" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1510" />
+            </Array>
+            <mxPoint x="260" y="1460" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-223" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Gói Pro&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1541" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-224" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-223" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1561" />
+            </Array>
+            <mxPoint x="179" y="1510" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-225" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Giới Hạn Chức Năng Theo Gói&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1641" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-226" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-225" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1661" />
+            </Array>
+            <mxPoint x="179" y="1610" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-227" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};fontStyle=1" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Kiểm Tra Gói Hiện Tại&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="160" x="200" y="1591" as="geometry" />
+        </mxCell>
+        <mxCell id="VtucAM20ck2O_b3Ok1sz-228" edge="1" parent="1" style="edgeStyle=elbowEdgeStyle;elbow=vertical;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;startArrow=none;endArrow=none;rounded=0;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.045;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" target="VtucAM20ck2O_b3Ok1sz-227" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="1611" />
+            </Array>
+            <mxPoint x="179" y="1560" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
