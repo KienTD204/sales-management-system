@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-10-21T12:52:15.569555+00:00",
+  "python_passed": 237,
+  "browser_passed": 131,
+  "week9_browser_passed": 75,
+  "postman_requests": 100,
+  "postman_assertions": 134,
+  "test_case_groups": 33,
+  "failures": 0,
+  "modules": 13,
+  "postman_suites": [
+    {
+      "suite": "week678",
+      "requests": 44,
+      "assertions": 65
+    },
+    {
+      "suite": "workspaces",
+      "requests": 24,
+      "assertions": 31
+    },
+    {
+      "suite": "plans",
+      "requests": 32,
+      "assertions": 38
+    }
+  ]
+}

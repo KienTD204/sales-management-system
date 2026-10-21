@@ -1,0 +1,5 @@
+import {Api,ListController,escapeHtml as e,money,dateTime,showError} from './api-client.js';
+import {initShell} from './shell.js';
+const role=document.body.dataset.role;
+const list=new ListController('/api/invoices',rows=>{document.getElementById('rows').innerHTML=rows.map(invoice=>`<tr data-id="${invoice.invoice_id}"><td><strong>${e(invoice.invoice_code)}</strong><small>${dateTime(invoice.issued_at)}</small></td><td>${e(invoice.snapshot.customer.full_name)}</td><td>${e(invoice.snapshot.seller.full_name)}<small>${e(invoice.snapshot.seller.username||"")}</small></td><td>${money(invoice.snapshot.total_amount)}</td><td><span class="status-badge ${invoice.order_status==='CANCELLED'?'danger':''}">${invoice.order_status==='CANCELLED'?'Đã hủy':'Hoàn thành'}</span></td><td class="text-end"><a class="btn btn-light btn-sm" target="_blank" rel="noopener" href="/invoices/${invoice.invoice_id}/print${role==='ADMIN'?'?shop_id='+encodeURIComponent(document.body.dataset.shop):''}">Xem & in</a></td></tr>`).join('');});
+initShell().then(()=>list.load()).catch(error=>showError(document.getElementById('listError'),error));

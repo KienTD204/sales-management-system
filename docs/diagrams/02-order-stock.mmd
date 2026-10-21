@@ -1,0 +1,37 @@
+sequenceDiagram
+    autonumber
+    actor E as OWNER hoặc EMPLOYEE
+    participant UI as POS UI
+    participant API as OrderController
+    participant DB as MySQL
+    Note over UI,DB: Thiết kế Tuần 4 - Module 7 chưa có route thực thi trong gói
+    E->>UI: Chọn hàng và xác nhận thanh toán
+    UI->>API: POST /api/orders, customer_id, items, payment
+    API->>API: Kiểm tra phiên, vai trò, shop và giỏ hàng
+    API->>DB: BEGIN TRANSACTION
+    API->>DB: Khóa products FOR UPDATE theo product_id tăng dần
+    DB-->>API: Giá, trạng thái và tồn kho hiện tại
+    API->>API: Kiểm tra cùng shop, số lượng và tính tiền Decimal
+    alt Thiếu hàng hoặc dữ liệu không hợp lệ
+        API->>DB: ROLLBACK
+        API-->>UI: 400, giữ giỏ hàng để sửa
+    else Dữ liệu và tồn kho hợp lệ
+        API->>DB: INSERT orders NEW và order_items
+        alt Chỉ tạo đơn, chưa hoàn tất thanh toán
+            API->>DB: COMMIT - chưa trừ tồn kho
+            API-->>UI: 201, status NEW
+        else Thanh toán POS thành công, hoàn thành ngay
+            API->>DB: INSERT payments PAID
+            API->>DB: UPDATE orders COMPLETED, completed_at
+            loop Mỗi sản phẩm đã khóa
+                API->>DB: UPDATE products trừ đúng quantity
+                API->>DB: INSERT inventory_transactions SALE_OUT
+            end
+            API->>DB: INSERT invoice, mã duy nhất
+            API->>DB: COMMIT toàn bộ đơn, thanh toán và tồn
+            API-->>UI: 201, order_id, order_code, cảnh báo tồn
+            UI-->>E: Xóa giỏ và mở khung in hóa đơn
+        end
+    end
+    Note over API,DB: Lỗi SQL ở bất kỳ bước ghi nào phải ROLLBACK toàn giao dịch
+    Note over API,DB: Đơn đã COMPLETED không được trừ kho lần nữa khi retry

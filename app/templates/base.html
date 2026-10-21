@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ session_csrf }}">
+  <title>{{ page_title }} · ShopFlow</title>
+  <link rel="icon" href="{{ url_for('frontend.static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('frontend.static', filename='vendor/bootstrap/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('frontend.static', filename='css/app.css') }}">
+</head>
+<body data-page="{{ page|default('') }}" data-role="{{ user.role.role_name if user else '' }}" data-shop="{{ selected_shop }}" data-workspace="{{ workspace_mode }}">
+  <a class="skip-link" href="#main">Bỏ qua menu</a>
+  {% if user %}
+  {% include 'partials/sidebar.html' %}
+  <div class="workspace">
+    {% include 'partials/header.html' %}
+    <main id="main" class="content">
+      {% include 'partials/breadcrumb.html' %}
+      {% if user.role.role_name == 'ADMIN' and page|default('') != 'shops' %}
+      <form class="scope-form d-flex align-items-end gap-2 mb-4" id="scopeForm">
+        <div><label for="shopScope" class="form-label">Cửa hàng cần xem</label><input id="shopScope" name="shop_id" class="form-control" type="number" min="1" step="1" max="2147483647" required value="{{ selected_shop }}" placeholder="Nhập ID cửa hàng"></div>
+        <button class="btn btn-outline-primary" type="submit">Chọn cửa hàng</button>
+      </form>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'partials/footer.html' %}
+  </div>
+  {% else %}<main id="main">{% block public_content %}{% endblock %}</main>{% endif %}
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  {% include 'components/confirm.html' %}
+  {% block extra_scripts %}{% endblock %}
+  <script src="{{ url_for('frontend.static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  <script type="module" src="{{ url_for('frontend.static', filename='js/' ~ (script|default('shell')) ~ '.js') }}"></script>
+</body>
+</html>

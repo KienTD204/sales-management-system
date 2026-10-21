@@ -1,0 +1,16 @@
+{
+  "executed_at": "2026-10-21T12:47:39.099Z",
+  "runner": "Newman 6.2.2",
+  "base_url": "http://127.0.0.1:50109",
+  "requests": {
+    "total": 44,
+    "pending": 0,
+    "failed": 0
+  },
+  "assertions": {
+    "total": 65,
+    "pending": 0,
+    "failed": 0
+  },
+  "failures": []
+}

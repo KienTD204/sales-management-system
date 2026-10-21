@@ -1,0 +1,38 @@
+sequenceDiagram
+    autonumber
+    actor U as Người dùng
+    participant UI as Login UI
+    participant API as AuthController
+    participant DB as MySQL
+    UI->>API: GET /api/csrf
+    API-->>UI: CSRF + cookie tiền đăng nhập
+    U->>UI: Nhập email hoặc SĐT và mật khẩu
+    UI->>API: POST /api/login + X-CSRF-Token
+    API->>API: Kiểm tra CSRF và định dạng JSON
+    API->>DB: SELECT users theo email hoặc SĐT FOR UPDATE
+    DB-->>API: User + password_hash + role
+    API->>API: check_password_hash()
+    alt Sai định danh, mật khẩu hoặc SĐT trùng tài khoản
+        API-->>UI: 401 invalid_credentials
+        UI-->>U: Hiển thị lỗi đăng nhập
+    else Tài khoản hoặc cửa hàng bị khóa
+        API->>DB: Kiểm tra users.is_active và shops.is_active
+        API-->>UI: 403 account_disabled
+    else Đăng nhập hợp lệ
+        API->>DB: INSERT api_sessions với SHA-256 token
+        API->>DB: COMMIT
+        API-->>UI: 200 + cookie HttpOnly + CSRF + redirect_url
+        UI-->>U: ADMIN /admin, OWNER /dashboard, EMPLOYEE /pos
+    end
+    U->>UI: Truy cập chức năng được bảo vệ
+    UI->>API: GET API + cookie hoặc Bearer
+    API->>DB: Đọc session, user, role và shop hiện tại
+    alt Phiên hợp lệ và đúng vai trò
+        API->>DB: Cập nhật last_seen_at
+        API-->>UI: Dữ liệu thuộc đúng shop_id
+    else Phiên hết hạn hoặc bị thu hồi
+        API-->>UI: 401 session_invalid
+        UI-->>U: Về trang đăng nhập
+    else Vượt quyền
+        API-->>UI: 403 forbidden
+    end

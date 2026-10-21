@@ -1,0 +1,36 @@
+sequenceDiagram
+    autonumber
+    actor O as OWNER hoặc ADMIN
+    participant UI as Report UI
+    participant API as ReportController
+    participant DB as MySQL
+    Note over UI,DB: Thiết kế Tuần 4 - Module 12 chưa có route thực thi trong gói
+    O->>UI: Chọn ngày, tuần, tháng hoặc năm
+    UI->>API: GET /api/reports/revenue?range=month
+    API->>API: Kiểm tra phiên, vai trò và shop_id
+    alt EMPLOYEE hoặc phiên không hợp lệ
+        API-->>UI: 403 forbidden hoặc 401 session_invalid
+    else OWNER hoặc ADMIN được phép
+        API->>DB: Đọc subscriptions ACTIVE và thời hạn
+        alt Gói hết hạn hoặc chức năng vượt gói
+            API-->>UI: 403, thông báo gói dịch vụ
+        else Gói cho phép báo cáo
+            API->>API: Xác định cửa sổ thời gian và granularity
+            API->>DB: SUM total_amount và COUNT orders COMPLETED
+            DB-->>API: KPI và nhóm doanh thu theo thời gian
+            opt include_top_products=true và gói PRO
+                API->>DB: JOIN orders, order_items, products cùng shop
+                API->>DB: GROUP BY product_id, SUM quantity, LIMIT 5
+                DB-->>API: Top 5 sản phẩm
+            end
+            API->>API: Tạo kpi và charts, tiền dùng chuỗi Decimal
+            alt Chưa có đơn COMPLETED trong kỳ
+                API-->>UI: 200, KPI 0 và mảng dữ liệu rỗng
+                UI-->>O: Chưa có dữ liệu bán hàng
+            else Có dữ liệu
+                API-->>UI: 200, data.kpi và data.charts
+                UI-->>O: Hiển thị KPI và biểu đồ
+            end
+        end
+    end
+    Note over API,DB: Tổng doanh thu lấy từ orders riêng, không SUM sau JOIN dòng hàng

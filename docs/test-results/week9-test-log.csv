@@ -1,0 +1,369 @@
+﻿suite,case,status,seconds,evidence
+tests.test_api,test_auth_cookie_csrf_logout,PASS,1.948,docs/test-results/pytest-week9.xml
+tests.test_api,test_login_wrong_credentials,PASS,0.802,docs/test-results/pytest-week9.xml
+tests.test_api,test_session_invalidation[idle],PASS,0.801,docs/test-results/pytest-week9.xml
+tests.test_api,test_session_invalidation[absolute],PASS,0.808,docs/test-results/pytest-week9.xml
+tests.test_api,test_session_invalidation[revoked],PASS,0.791,docs/test-results/pytest-week9.xml
+tests.test_api,test_session_invalidation[user_disabled],PASS,0.790,docs/test-results/pytest-week9.xml
+tests.test_api,test_session_invalidation[shop_disabled],PASS,0.796,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_crud_search_stock_audit,PASS,0.909,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[price--1],PASS,0.797,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[price-1.001],PASS,0.799,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[price-NaN],PASS,0.780,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[price-1e3],PASS,0.808,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[price-10000000000000],PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[stock_quantity--1],PASS,0.814,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[stock_quantity-1.2],PASS,0.799,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[stock_quantity-True],PASS,0.771,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[min_stock--1],PASS,0.840,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[is_active-yes],PASS,0.817,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[product_name- ],PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[product_code-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA],PASS,0.821,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[shop_id-999],PASS,0.799,docs/test-results/pytest-week9.xml
+tests.test_api,test_product_validation[image_url-/unsafe],PASS,0.806,docs/test-results/pytest-week9.xml
+tests.test_api,test_query_validation[page=0],PASS,0.798,docs/test-results/pytest-week9.xml
+tests.test_api,test_query_validation[per_page=101],PASS,0.802,docs/test-results/pytest-week9.xml
+tests.test_api,test_query_validation[min_price=10&max_price=1],PASS,0.817,docs/test-results/pytest-week9.xml
+tests.test_api,test_query_validation[sort=price;DROP],PASS,0.797,docs/test-results/pytest-week9.xml
+tests.test_api,test_query_validation[category_id=0],PASS,0.785,docs/test-results/pytest-week9.xml
+tests.test_api,test_unique_codes_and_literal_search,PASS,1.214,docs/test-results/pytest-week9.xml
+tests.test_api,test_category_full_crud_and_delete_guard,PASS,0.888,docs/test-results/pytest-week9.xml
+tests.test_api,test_tenant_isolation,PASS,2.139,docs/test-results/pytest-week9.xml
+tests.test_api,test_admin_read_permissions,PASS,1.383,docs/test-results/pytest-week9.xml
+tests.test_api,test_valid_upload_replace_remove[PNG-../../x.png-image/png],PASS,1.428,docs/test-results/pytest-week9.xml
+tests.test_api,test_valid_upload_replace_remove[JPEG-x.JPG-image/jpeg],PASS,1.338,docs/test-results/pytest-week9.xml
+tests.test_api,test_valid_upload_replace_remove[WEBP-x.webp-image/webp],PASS,1.332,docs/test-results/pytest-week9.xml
+tests.test_api,test_bad_upload[corrupt],PASS,0.840,docs/test-results/pytest-week9.xml
+tests.test_api,test_bad_upload[extension],PASS,0.823,docs/test-results/pytest-week9.xml
+tests.test_api,test_bad_upload[oversize],PASS,0.855,docs/test-results/pytest-week9.xml
+tests.test_api,test_wrong_mime_and_extension_and_pixels,PASS,0.907,docs/test-results/pytest-week9.xml
+tests.test_api,test_upload_rollback_no_orphan,PASS,0.879,docs/test-results/pytest-week9.xml
+tests.test_api,test_customer_crud_staff_and_soft_delete,PASS,1.328,docs/test-results/pytest-week9.xml
+tests.test_api,test_history_decimal_no_double_count,PASS,0.953,docs/test-results/pytest-week9.xml
+tests.test_api,test_employee_create_account_atomic_hash,PASS,1.727,docs/test-results/pytest-week9.xml
+tests.test_api,test_employee_profile_account_crud,PASS,1.269,docs/test-results/pytest-week9.xml
+tests.test_api,test_lock_revokes_every_session_and_unlock_does_not_revive,PASS,2.423,docs/test-results/pytest-week9.xml
+tests.test_api,test_self_disable_guard[post-/lock-None],PASS,0.815,docs/test-results/pytest-week9.xml
+tests.test_api,test_self_disable_guard[delete--None],PASS,0.843,docs/test-results/pytest-week9.xml
+tests.test_api,test_self_disable_guard[patch--payload2],PASS,0.832,docs/test-results/pytest-week9.xml
+tests.test_api,test_reset_password_revokes_sessions,PASS,2.022,docs/test-results/pytest-week9.xml
+tests.test_api,test_concurrent_duplicate_product_one_winner,PASS,0.845,docs/test-results/pytest-week9.xml
+tests.test_api,test_empty_patch_and_bad_json,PASS,0.843,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_login_cookie_role_redirect_logout,PASS,1.690,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_duplicate_rolls_back_shop_and_user[shop_code-S1],PASS,0.815,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_duplicate_rolls_back_shop_and_user[username-owner],PASS,0.779,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_duplicate_rolls_back_shop_and_user[email-owner@example.com],PASS,0.822,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[role_id-1],PASS,0.431,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[role_name-ADMIN],PASS,0.426,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[shop_id-1],PASS,0.427,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[password-short],PASS,0.425,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[email-invalid],PASS,0.424,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[phone-123],PASS,0.429,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[shop_code- ],PASS,0.440,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[full_name-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx],PASS,0.416,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_rejects_invalid_or_privilege_fields[username-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx],PASS,0.446,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_csrf[missing],PASS,0.448,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_csrf[foreign_origin],PASS,0.453,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_register_missing_owner_role,PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_concurrent_registration_only_one_shop,PASS,0.855,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_role_redirect[owner@example.com-/pos],PASS,0.853,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_role_redirect[staff@example.com-/pos],PASS,0.814,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_role_redirect[admin@example.com-/admin],PASS,0.832,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_permission_reads_current_role_not_client_claim,PASS,0.822,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_login_by_phone,PASS,0.810,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_ambiguous_phone_requires_email,PASS,1.249,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_login_requires_one_valid_identity[identity0],PASS,0.467,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_login_requires_one_valid_identity[identity1],PASS,0.411,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_login_requires_one_valid_identity[identity2],PASS,0.436,docs/test-results/pytest-week9.xml
+tests.test_auth_week5,test_login_requires_one_valid_identity[identity3],PASS,0.430,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/],PASS,0.430,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/dashboard],PASS,0.420,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/pos],PASS,0.435,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/admin],PASS,0.434,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/products],PASS,0.434,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/categories],PASS,0.429,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/customers],PASS,0.420,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_private_pages_redirect_when_not_logged_in[/employees],PASS,0.412,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_page_role_permissions_and_sidebar[owner@example.com-allowed0-denied0],PASS,0.909,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_page_role_permissions_and_sidebar[staff@example.com-allowed1-denied1],PASS,1.014,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_page_role_permissions_and_sidebar[admin@example.com-allowed2-denied2],PASS,0.967,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_root_follows_role[owner@example.com-/pos],PASS,0.855,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_root_follows_role[staff@example.com-/pos],PASS,0.827,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_root_follows_role[admin@example.com-/admin],PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_public_forms_assets_and_upload_separation,PASS,0.411,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_html_escapes_user_name,PASS,0.822,docs/test-results/pytest-week9.xml
+tests.test_frontend,test_logout_and_revocation_protect_html,PASS,0.843,docs/test-results/pytest-week9.xml
+tests.test_migration_week678,test_upgrade_real_week56_schema_preserves_seed_and_legacy_invoice,PASS,2.087,docs/test-results/pytest-week9.xml
+tests.test_package,test_postman_collection_workflow,PASS,2.023,docs/test-results/pytest-week9.xml
+tests.test_package,test_cli_create_owner_and_admin,PASS,2.175,docs/test-results/pytest-week9.xml
+tests.test_package,test_demo_history_sql,PASS,0.917,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[range=week],PASS,0.862,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[range=month],PASS,0.895,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[range=year],PASS,0.875,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[from_date=2026-10-01&to_date=2026-10-02],PASS,0.878,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[from_date=2026-10-01&to_date=2026-10-01&group_by=week],PASS,0.886,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_cannot_bypass_report_window[from=2026-10-01T12:00:00Z&to=2026-10-02T12:00:00Z],PASS,0.929,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_defaults_daily_and_prices,PASS,0.961,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_pro_has_all_report_periods[day],PASS,0.930,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_pro_has_all_report_periods[week],PASS,0.924,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_pro_has_all_report_periods[month],PASS,1.101,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_pro_has_all_report_periods[year],PASS,0.997,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_standard_sellers_payroll_and_rate_blocked,PASS,1.463,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_category_quota_and_activation,PASS,1.016,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_concurrent_categories_cannot_exceed_five,PASS,0.900,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_concurrent_products_and_reactivation,PASS,0.912,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_account_count_unlock_and_no_orphan,PASS,2.033,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_attendance_limit_separate_from_accounts,PASS,1.037,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_pro_attendance_thirty,PASS,1.521,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_branch_standard_limit_pro_assignment_and_shared_stock,PASS,2.517,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_clock_server_overlap_close_and_self_privacy,PASS,2.069,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_concurrent_clock_in_only_one_open,PASS,1.468,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_payroll_formula_freeze_rate_history_and_audit,PASS,2.210,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_rate_change_splits_hours_and_commission,PASS,1.801,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_current_month_only_preview_and_invalid_commission,PASS,1.704,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_overnight_shift_split_at_month_boundary,PASS,1.590,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_payroll_cancel_refund_no_payment_join_multiplication,PASS,1.492,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_attendance_correction_audit_overlap_and_unapproved_payroll,PASS,1.921,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_expiry_keeps_resources_blocks_growth_and_extra_accounts,PASS,3.383,docs/test-results/pytest-week9.xml
+tests.test_plans_workforce,test_migration_from_previous_schema_twice_keeps_history,PASS,1.722,docs/test-results/pytest-week9.xml
+tests.test_seed_schema,test_database_schema_full_seed_and_login_history,PASS,2.345,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_session_version_quantity_and_decimal,PASS,1.457,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[0],PASS,0.903,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[-1],PASS,0.878,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[1.2],PASS,0.864,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[True],PASS,0.889,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[1e2],PASS,0.919,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_bad_quantities[2147483648],PASS,0.915,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cart_stock_recheck_and_clear,PASS,1.038,docs/test-results/pytest-week9.xml
+tests.test_week678,test_checkout_exact_money_change_cart_clear_and_replay,PASS,1.065,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bank_confirmation_and_qr,PASS,0.955,docs/test-results/pytest-week9.xml
+tests.test_week678,test_payment_validation_rolls_back_all[payment0],PASS,0.831,docs/test-results/pytest-week9.xml
+tests.test_week678,test_payment_validation_rolls_back_all[payment1],PASS,0.879,docs/test-results/pytest-week9.xml
+tests.test_week678,test_payment_validation_rolls_back_all[payment2],PASS,0.865,docs/test-results/pytest-week9.xml
+tests.test_week678,test_payment_validation_rolls_back_all[payment3],PASS,0.883,docs/test-results/pytest-week9.xml
+tests.test_week678,test_pending_order_processing_pay_and_price_snapshot,PASS,1.012,docs/test-results/pytest-week9.xml
+tests.test_week678,test_invoice_snapshot_and_cancel_exactly_once,PASS,0.925,docs/test-results/pytest-week9.xml
+tests.test_week678,test_cancel_pending_and_forbidden_staff,PASS,1.298,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_order_payload[bad0],PASS,0.846,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_order_payload[bad1],PASS,0.832,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_order_payload[bad2],PASS,0.821,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_order_payload[bad3],PASS,0.828,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_order_payload[bad4],PASS,0.823,docs/test-results/pytest-week9.xml
+tests.test_week678,test_free_order_respects_payment_positive_constraint,PASS,0.870,docs/test-results/pytest-week9.xml
+tests.test_week678,test_outside_shop_is_hidden,PASS,1.240,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_decimal_no_join_double_count_and_cancel,PASS,0.875,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_groups_and_zero_buckets[hour],PASS,0.808,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_groups_and_zero_buckets[day],PASS,0.831,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_groups_and_zero_buckets[week],PASS,0.817,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_groups_and_zero_buckets[month],PASS,0.800,docs/test-results/pytest-week9.xml
+tests.test_week678,test_report_groups_and_zero_buckets[year],PASS,0.800,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[from_date=2026-01-01],PASS,0.828,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[from_date=bad&to_date=2026-01-01],PASS,0.826,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[from_date=2026-02-01&to_date=2026-01-01],PASS,0.826,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[range=invalid],PASS,0.795,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[group_by=invalid],PASS,0.823,docs/test-results/pytest-week9.xml
+tests.test_week678,test_bad_report_windows[from=2026-01-01&to=2026-01-02],PASS,0.810,docs/test-results/pytest-week9.xml
+tests.test_week678,test_standard_pro_expiry_admin_scope_and_export,PASS,1.335,docs/test-results/pytest-week9.xml
+tests.test_week678,test_inventory_badges_alerts_and_ledger,PASS,1.261,docs/test-results/pytest-week9.xml
+tests.test_week678,test_concurrent_cashiers_cannot_sell_last_unit_twice,PASS,1.316,docs/test-results/pytest-week9.xml
+tests.test_week678,test_concurrent_same_checkout_key_and_cancel_are_idempotent,PASS,0.897,docs/test-results/pytest-week9.xml
+tests.test_week678,test_migration_command_can_run_twice_without_data_loss,PASS,0.872,docs/test-results/pytest-week9.xml
+tests.test_week678,test_checkout_rejects_price_change_and_another_session_cart,PASS,1.244,docs/test-results/pytest-week9.xml
+tests.test_week678,test_deleted_zero_stock_product_can_be_removed_from_cart,PASS,0.842,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search[' OR 1=1 --],PASS,0.884,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search['; DROP TABLE products;--],PASS,0.861,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search[x' UNION SELECT password_hash FROM users--],PASS,0.861,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search[%],PASS,0.861,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search[_],PASS,0.909,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_injection_and_literal_search[a/b],PASS,0.940,docs/test-results/pytest-week9.xml
+tests.test_week9,test_sql_auth_and_privilege_mass_assignment,PASS,1.199,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/products],PASS,0.787,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/categories],PASS,0.800,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/employees],PASS,0.793,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/customers],PASS,0.801,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/dashboard],PASS,0.815,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/reports],PASS,0.821,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/subscription],PASS,0.808,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/branches],PASS,0.800,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/workforce],PASS,0.810,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/attendance],PASS,0.823,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/management/payroll],PASS,0.805,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_page_url_bypass[/admin/shops],PASS,0.815,docs/test-results/pytest-week9.xml
+tests.test_week9,test_staff_direct_write_api_bypass,PASS,0.848,docs/test-results/pytest-week9.xml
+tests.test_week9,test_anonymous_api_and_forged_bearer,PASS,0.449,docs/test-results/pytest-week9.xml
+tests.test_week9,test_cookie_csrf_origin_and_security_headers,PASS,0.816,docs/test-results/pytest-week9.xml
+tests.test_week9,test_cross_shop_identifiers_and_image_isolation,PASS,1.306,docs/test-results/pytest-week9.xml
+tests.test_week9,test_upload_polyglot_reencoded_and_failed_transaction_cleans_file,PASS,0.866,docs/test-results/pytest-week9.xml
+tests.test_week9,test_xss_stored_text_invoice_autoescape_and_json,PASS,0.844,docs/test-results/pytest-week9.xml
+tests.test_week9,test_money_independent_expected_and_cancel_once[0.10-3-0.01-0.02-1.00-0.27-0.73],PASS,0.874,docs/test-results/pytest-week9.xml
+tests.test_week9,test_money_independent_expected_and_cancel_once[19.99-7-0.03-1.99-200.00-137.91-62.09],PASS,0.877,docs/test-results/pytest-week9.xml
+tests.test_week9,test_money_independent_expected_and_cancel_once[1234567.89-9-0.01-0.00-12000000.00-11111111.00-888889.00],PASS,0.854,docs/test-results/pytest-week9.xml
+tests.test_week9,test_revenue_calendar_boundaries[day-40.00-1],PASS,0.846,docs/test-results/pytest-week9.xml
+tests.test_week9,test_revenue_calendar_boundaries[week-90.00-3],PASS,0.835,docs/test-results/pytest-week9.xml
+tests.test_week9,test_revenue_calendar_boundaries[month-90.00-2],PASS,0.840,docs/test-results/pytest-week9.xml
+tests.test_week9,test_revenue_calendar_boundaries[year-150.00-3],PASS,0.856,docs/test-results/pytest-week9.xml
+tests.test_week9,test_iso_week_and_leap_day_half_open_range,PASS,0.850,docs/test-results/pytest-week9.xml
+tests.test_week9,test_customer_history_preserves_item_snapshot_and_excludes_refund,PASS,0.908,docs/test-results/pytest-week9.xml
+tests.test_week9,test_order_invoice_list_query_count_does_not_grow_with_page,PASS,0.886,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management],PASS,0.813,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management/products],PASS,0.815,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management/categories],PASS,0.817,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management/customers],PASS,0.834,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management/employees],PASS,0.820,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/management/seller-report],PASS,0.804,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/dashboard],PASS,0.795,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/reports],PASS,0.810,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/subscription],PASS,0.796,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_open_management[/admin/shops],PASS,0.801,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/reports/sellers],PASS,0.793,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/reports/sellers/1/orders],PASS,0.798,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/admin/shops],PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/admin/shops/1],PASS,0.839,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/admin/shops/1/subscriptions],PASS,0.800,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/employees],PASS,0.807,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_staff_cannot_use_management_api[/api/reports/revenue],PASS,0.811,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_owner_has_readonly_sales_and_editable_management,PASS,1.235,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_admin_keeps_shop_scope_but_cannot_sell,PASS,0.828,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_seller_bound_to_session_and_snapshot_survives_rename_lock,PASS,1.306,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_cannot_spoof_seller[user_id],PASS,1.229,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_cannot_spoof_seller[seller_id],PASS,1.230,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_cannot_spoof_seller[seller_snapshot],PASS,1.245,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_creator_is_seller_even_if_another_account_takes_payment,PASS,1.279,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_monthly_report_reconciles_and_drilldown_scoped,PASS,1.838,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_refunded_completed_order_excluded_without_join_duplication,PASS,0.886,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_legacy_seller_does_not_fabricate_historical_name,PASS,1.008,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_admin_shops_search_filter_history_expiry_and_no_secrets,PASS,1.733,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_workspace_migration_twice_preserves_records,PASS,0.932,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_two_cashiers_with_missing_receipts_cannot_deadlock,PASS,1.320,docs/test-results/pytest-week9.xml
+tests.test_workspaces,test_same_key_across_two_sessions_returns_committed_order,PASS,1.579,docs/test-results/pytest-week9.xml
+frontend-e2e,"Trang công khai, bảo vệ trang và validate đăng ký",PASS,0.661,docs/test-results/frontend-e2e.json
+frontend-e2e,Đăng ký → đăng nhập → trang chủ OWNER → đăng xuất,PASS,1.36,docs/test-results/frontend-e2e.json
+frontend-e2e,Sai mật khẩu và tài khoản khóa giữ lỗi tại Login,PASS,2.454,docs/test-results/frontend-e2e.json
+frontend-e2e,"Category thêm, sửa và xóa danh mục rỗng",PASS,3.788,docs/test-results/frontend-e2e.json
+frontend-e2e,Product tạo với ảnh PNG và render bảng/thẻ không reload,PASS,1.278,docs/test-results/frontend-e2e.json
+frontend-e2e,"Product sửa giá/tồn bằng 0, thay ảnh JPG và WEBP",PASS,1.835,docs/test-results/frontend-e2e.json
+frontend-e2e,"Upload validate client/server, lỗi trùng mã và giữ form",PASS,1.514,docs/test-results/frontend-e2e.json
+frontend-e2e,"Tìm tên/SKU, lọc danh mục/giá và phân trang server",PASS,2.504,docs/test-results/frontend-e2e.json
+frontend-e2e,"Xóa ảnh, ngừng/mở bán, chặn xóa danh mục còn sản phẩm",PASS,5.426,docs/test-results/frontend-e2e.json
+frontend-e2e,"Customer thêm/sửa, trùng SĐT, xóa mềm và khôi phục",PASS,5.207,docs/test-results/frontend-e2e.json
+frontend-e2e,"Lịch sử khách: orders/items/payments, summary và bộ lọc",PASS,2.343,docs/test-results/frontend-e2e.json
+frontend-e2e,Employee CRUD và tạo/sửa tài khoản,PASS,3.161,docs/test-results/frontend-e2e.json
+frontend-e2e,"Khóa/mở, thu hồi phiên và đổi mật khẩu nhân viên",PASS,7.769,docs/test-results/frontend-e2e.json
+frontend-e2e,Tạo hồ sơ + account nguyên tử qua form nhân viên,PASS,1.439,docs/test-results/frontend-e2e.json
+frontend-e2e,"EMPLOYEE: đăng nhập SĐT, sidebar/nút và API vượt quyền",PASS,0.969,docs/test-results/frontend-e2e.json
+frontend-e2e,"ADMIN: scope shop, chỉ đọc và cấm Employee",PASS,1.186,docs/test-results/frontend-e2e.json
+frontend-e2e,"Tách shop, lỗi mạng, XSS và menu điện thoại",PASS,2.259,docs/test-results/frontend-e2e.json
+frontend-e2e,Phiên bị thu hồi khi trang đang mở đưa về Login,PASS,0.416,docs/test-results/frontend-e2e.json
+frontend-week678,"Dashboard dữ liệu thật, biểu đồ tháng và Top 5 Pro",PASS,1.238,docs/test-results/frontend-week678.json
+frontend-week678,"POS giỏ theo phiên: thêm, tăng, giảm và tải lại",PASS,0.686,docs/test-results/frontend-week678.json
+frontend-week678,"Tiền mặt, thêm nhanh khách, giảm giá và tiền thừa chính xác",PASS,3.348,docs/test-results/frontend-week678.json
+frontend-week678,"Hóa đơn bán lẻ, dữ liệu snapshot và CSS in",PASS,0.481,docs/test-results/frontend-week678.json
+frontend-week678,"Đơn hàng lọc trạng thái, chi tiết và hủy hoàn kho một lần",PASS,1.986,docs/test-results/frontend-week678.json
+frontend-week678,"Thanh toán QR mô phỏng, tham chiếu và xác nhận",PASS,1.367,docs/test-results/frontend-week678.json
+frontend-week678,Đơn NEW → PROCESSING → COMPLETED qua giao diện,PASS,3.418,docs/test-results/frontend-week678.json
+frontend-week678,"Tồn kho badge xanh/vàng/đỏ, điều chỉnh và lịch sử",PASS,4.42,docs/test-results/frontend-week678.json
+frontend-week678,"Hai tab đối soát phiên giỏ, không ghi đè phiên bản cũ",PASS,2.9,docs/test-results/frontend-week678.json
+frontend-week678,Mất phản hồi sau commit rồi thử lại không tạo hai đơn,PASS,1.366,docs/test-results/frontend-week678.json
+frontend-week678,Standard chặn Top 5/CSV ở server và hiển thị nâng cấp,PASS,2.218,docs/test-results/frontend-week678.json
+frontend-week678,Admin cấp gói theo shop và owner không tự cấp Pro,PASS,4.328,docs/test-results/frontend-week678.json
+frontend-week678,Báo cáo ngày/tuần/tháng/năm và tải CSV Pro,PASS,0.854,docs/test-results/frontend-week678.json
+frontend-week678,Employee được POS/kho/đơn/hóa đơn và bị chặn báo cáo/gói/hủy,PASS,1.285,docs/test-results/frontend-week678.json
+frontend-week678,Invoice giữ nguyên tên hàng sau sửa Product và giao diện mobile,PASS,0.59,docs/test-results/frontend-week678.json
+frontend-workspaces,Owner vào bán hàng và chuyển sang quản trị cùng phiên,PASS,1.726,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Tra cứu hàng hóa riêng, form chỉnh sửa chỉ có trong quản trị",PASS,1.057,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Nhân viên không có nút quản trị, URL và API quản trị trả 403",PASS,1.195,docs/test-results/frontend-workspaces.json
+frontend-workspaces,Nhân viên bán POS và hóa đơn có người bán từ phiên,PASS,2.065,docs/test-results/frontend-workspaces.json
+frontend-workspaces,Chi tiết đơn và danh sách hóa đơn hiển thị người bán,PASS,1.127,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Đổi tên, khóa nhân viên vẫn giữ nguyên tên trên hóa đơn",PASS,0.106,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Báo cáo tháng, doanh số nhân viên và danh sách đơn đối soát",PASS,1.462,docs/test-results/frontend-workspaces.json
+frontend-workspaces,Owner bị chặn khỏi danh sách toàn bộ shop,PASS,0.015,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Admin xem danh sách shop, tìm tài khoản owner và trang chi tiết",PASS,2.256,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Chọn shop hiện tài khoản chủ, cấp Pro và hạ Standard",PASS,4.026,docs/test-results/frontend-workspaces.json
+frontend-workspaces,ID shop không tồn tại chặn cấp gói và xóa thông tin cũ,PASS,0.136,docs/test-results/frontend-workspaces.json
+frontend-workspaces,"Admin chuyển không gian giữ shop, mobile không tràn trang",PASS,0.474,docs/test-results/frontend-workspaces.json
+frontend-plans,Giá Standard miễn phí / Pro 500.000 đ và mức sử dụng,PASS,1.207,docs/test-results/frontend-plans.json
+frontend-plans,Pro tạo chi nhánh qua form và tạo nhân viên liên kết,PASS,1.437,docs/test-results/frontend-plans.json
+frontend-plans,Phân công chi nhánh và kích hoạt chấm công bằng giao diện,PASS,1.044,docs/test-results/frontend-plans.json
+frontend-plans,"Nhân viên bán tại chi nhánh được phân công, hóa đơn giữ chi nhánh",PASS,2.797,docs/test-results/frontend-plans.json
+frontend-plans,"Vào/ra ca từ server, không mở hai ca",PASS,2.412,docs/test-results/frontend-plans.json
+frontend-plans,"Chủ shop sửa ca, duyệt công và xem audit",PASS,3.76,docs/test-results/frontend-plans.json
+frontend-plans,"Cấu hình 50.000 đ/giờ, hoa hồng 5%; xem tiền công và hóa đơn",PASS,0.447,docs/test-results/frontend-plans.json
+frontend-plans,"Chốt tháng đã kết thúc, khóa sửa ca và giữ snapshot",PASS,1.324,docs/test-results/frontend-plans.json
+frontend-plans,"Standard chỉ báo cáo ngày, không có doanh số nhân viên/lương",PASS,1.308,docs/test-results/frontend-plans.json
+frontend-plans,Standard hiển thị lỗi hạn mức danh mục và chặn thêm chi nhánh,PASS,0.743,docs/test-results/frontend-plans.json
+frontend-plans,"Nhân viên bị chặn API lương, giao diện điện thoại không tràn",PASS,0.178,docs/test-results/frontend-plans.json
+frontend-week9,UI-desktop-owner-_pos,PASS,0.784,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_products,PASS,0.64,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_categories,PASS,0.611,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_products,PASS,0.749,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_categories,PASS,0.608,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_customers,PASS,0.615,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_employees,PASS,0.61,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_orders,PASS,0.607,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_invoices,PASS,0.611,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_inventory,PASS,0.618,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_dashboard,PASS,0.775,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_reports,PASS,0.649,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_subscription,PASS,0.617,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_branches,PASS,0.613,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_workforce,PASS,0.624,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_attendance,PASS,0.623,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_payroll,PASS,0.636,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-owner-_management_seller-report,PASS,0.627,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-admin-_admin_shops,PASS,0.713,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-admin-_subscription,PASS,0.63,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-staff-_pos,PASS,0.659,docs/test-results/frontend-week9.json
+frontend-week9,UI-desktop-staff-_attendance,PASS,0.638,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_pos,PASS,0.775,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_products,PASS,0.62,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_categories,PASS,0.615,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_products,PASS,0.727,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_categories,PASS,0.631,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_customers,PASS,0.608,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_employees,PASS,0.619,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_orders,PASS,0.618,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_invoices,PASS,0.606,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_inventory,PASS,0.605,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_dashboard,PASS,0.731,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_reports,PASS,0.651,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_subscription,PASS,0.616,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_branches,PASS,0.611,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_workforce,PASS,0.623,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_attendance,PASS,0.624,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_payroll,PASS,0.623,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-owner-_management_seller-report,PASS,0.621,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-admin-_admin_shops,PASS,0.682,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-admin-_subscription,PASS,0.618,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-staff-_pos,PASS,0.641,docs/test-results/frontend-week9.json
+frontend-week9,UI-laptop-staff-_attendance,PASS,0.604,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_pos,PASS,0.775,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_products,PASS,0.655,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_categories,PASS,0.638,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_products,PASS,0.736,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_categories,PASS,0.636,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_customers,PASS,0.626,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_employees,PASS,0.631,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_orders,PASS,0.641,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_invoices,PASS,0.636,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_inventory,PASS,0.642,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_dashboard,PASS,0.763,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_reports,PASS,0.695,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_subscription,PASS,0.644,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_branches,PASS,0.636,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_workforce,PASS,0.641,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_attendance,PASS,0.65,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_payroll,PASS,0.651,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-owner-_management_seller-report,PASS,0.641,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-admin-_admin_shops,PASS,0.692,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-admin-_subscription,PASS,0.655,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-staff-_pos,PASS,0.674,docs/test-results/frontend-week9.json
+frontend-week9,UI-tablet-staff-_attendance,PASS,0.638,docs/test-results/frontend-week9.json
+frontend-week9,UI-F01,PASS,1.704,docs/test-results/frontend-week9.json
+frontend-week9,UI-F02,PASS,2.516,docs/test-results/frontend-week9.json
+frontend-week9,UI-F03,PASS,0.217,docs/test-results/frontend-week9.json
+frontend-week9,UI-F04,PASS,0.153,docs/test-results/frontend-week9.json
+frontend-week9,UI-F05,PASS,0.891,docs/test-results/frontend-week9.json
+frontend-week9,UI-S01,PASS,0.691,docs/test-results/frontend-week9.json
+frontend-week9,UI-S02,PASS,0.087,docs/test-results/frontend-week9.json
+frontend-week9,UI-F06,PASS,1.179,docs/test-results/frontend-week9.json
+frontend-week9,UI-QA,PASS,0.001,docs/test-results/frontend-week9.json

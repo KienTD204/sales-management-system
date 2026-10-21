@@ -1,0 +1,1536 @@
+{
+  "info": {
+    "name": "ShopFlow Tuần 6–8 POS Order Payment Invoice Inventory Report Subscription",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 CSRF và biến chạy",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('csrf_token', body.data.csrf_token);",
+              "pm.environment.set('run_code', 'PM'+Date.now()); pm.environment.set('checkout_key', pm.variables.replaceIn('{{$guid}}')); pm.environment.set('order_key', pm.variables.replaceIn('{{$guid}}')); pm.environment.set('payment_key', pm.variables.replaceIn('{{$guid}}'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Login OWNER",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"owner.demo@example.com\",\n  \"password\": \"DemoOwner123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('owner_token', body.data.token);",
+              "pm.environment.set('shop_id', body.data.shop_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Tạo Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/products",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"{{run_code}}\",\n  \"product_name\": \"Sản phẩm Postman {{run_code}}\",\n  \"price\": \"19.90\",\n  \"stock_quantity\": 10,\n  \"min_stock\": 2\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();",
+              "pm.environment.set('product_id', body.data.product_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Đọc giỏ",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/cart"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('cart_id', body.data.cart_id);",
+              "pm.environment.set('cart_version', body.data.version);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Thêm 2 sản phẩm",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/cart/items",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"quantity\": 2,\n  \"version\": \"{{cart_version}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('cart_version', body.data.version);",
+              "pm.test('Tổng Decimal',()=>pm.expect(body.data.total_amount).to.eql('39.80'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Quote giảm giá",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/cart/quote",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"version\": \"{{cart_version}}\",\n  \"discount_amount\": \"4.80\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('expected_total', body.data.total_amount);",
+              "pm.test('Phải thu 35.00',()=>pm.expect(body.data.total_amount).to.eql('35.00'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 QR mô phỏng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/cart/payment-qr",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"version\": \"{{cart_version}}\",\n  \"discount_amount\": \"4.80\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('PNG QR và simulation',()=>{pm.expect(body.data.simulation).to.eql(true);pm.expect(body.data.qr_data_url).to.match(/^data:image\\/png;base64,/);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Checkout tiền mặt",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{checkout_key}}"
+          }
+        ],
+        "url": "{{base_url}}/api/checkout",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cart_id\": \"{{cart_id}}\",\n  \"version\": \"{{cart_version}}\",\n  \"expected_total_amount\": \"{{expected_total}}\",\n  \"discount_amount\": \"4.80\",\n  \"payment\": {\n    \"payment_method\": \"CASH\",\n    \"tendered_amount\": \"50.00\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();",
+              "pm.environment.set('order_id', body.data.order_id);",
+              "pm.environment.set('order_code', body.data.order_code);",
+              "pm.environment.set('invoice_id', body.data.invoice_id);",
+              "pm.test('Thừa 15.00',()=>pm.expect(body.data.payments[0].change_amount).to.eql('15.00'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 Replay cùng key",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{checkout_key}}"
+          }
+        ],
+        "url": "{{base_url}}/api/checkout",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cart_id\": \"{{cart_id}}\",\n  \"version\": \"{{cart_version}}\",\n  \"expected_total_amount\": \"{{expected_total}}\",\n  \"discount_amount\": \"4.80\",\n  \"payment\": {\n    \"payment_method\": \"CASH\",\n    \"tendered_amount\": \"50.00\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Không tạo lại đơn',()=>{pm.expect(body.replayed).to.eql(true);pm.expect(body.data.order_id).to.eql(Number(pm.environment.get('order_id')));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 Giỏ đã trống",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/cart"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Giỏ trống',()=>pm.expect(body.data.items).to.have.lengthOf(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 Đọc Invoice snapshot",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/invoices/{{invoice_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Snapshot số tiền',()=>pm.expect(body.data.snapshot.total_amount).to.eql('35.00'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "12 Danh sách đơn có lọc",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders?q={{order_code}}&status=COMPLETED"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Có 1 đơn',()=>pm.expect(body.meta.total).to.eql(1));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "13 Hủy đơn",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/{{order_id}}/cancel",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cancel_reason\": \"Postman trả hàng\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Trạng thái hủy',()=>pm.expect(body.data.status).to.eql('CANCELLED'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "14 Hủy lại không hoàn kho lần hai",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/{{order_id}}/cancel",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cancel_reason\": \"Gửi lại\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "15 Kiểm tra hoàn tồn",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/products/{{product_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Tồn về 10',()=>pm.expect(body.data.stock_quantity).to.eql(10));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "16 Đặt tồn sắp hết",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/products/{{product_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_quantity\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "17 Cảnh báo kho",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/inventory/alerts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Có cảnh báo',()=>pm.expect(body.meta.total).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "18 Badge LOW",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/inventory?q={{run_code}}&stock_status=LOW"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('LOW',()=>pm.expect(body.data[0].stock_status).to.eql('LOW'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "19 Đặt tồn hết hàng",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/products/{{product_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_quantity\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "20 Badge OUT",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/inventory?q={{run_code}}&stock_status=OUT"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('OUT',()=>pm.expect(body.data[0].stock_status).to.eql('OUT'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "21 Bổ sung tồn",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/products/{{product_id}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_quantity\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "22 Tạo đơn NEW",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{order_key}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    {\n      \"product_id\": \"{{product_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();",
+              "pm.environment.set('pending_order_id', body.data.order_id);",
+              "pm.test('Chưa hoàn tất',()=>pm.expect(body.data.status).to.eql('NEW'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "23 Đang xử lý",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/{{pending_order_id}}/status",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"PROCESSING\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('PROCESSING',()=>pm.expect(body.data.status).to.eql('PROCESSING'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "24 Thanh toán đơn chờ",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{payment_key}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/{{pending_order_id}}/payments",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payment_method\": \"CASH\",\n  \"tendered_amount\": \"20.00\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Thừa 0.10',()=>pm.expect(body.data.payments[0].change_amount).to.eql('0.10'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "25 Báo cáo doanh thu tháng",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?range=year"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('KPI và 12 tháng',()=>{pm.expect(body.data.charts.labels).to.have.lengthOf(12);pm.expect(body.data.kpi.total_revenue).to.be.a('string');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "26 Top 5 Pro",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/top-products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Tối đa 5',()=>pm.expect(body.data.length).to.be.at.most(5));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "27 CSV Pro",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/export"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('CSV',()=>pm.expect(pm.response.headers.get('Content-Type')).to.include('text/csv'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "28 Lịch sử kho",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/inventory/transactions?product_id={{product_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.test('Có nhật ký',()=>pm.expect(body.meta.total).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "29 CSRF Admin",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('csrf_token', body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "30 Login ADMIN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin.demo@example.com\",\n  \"password\": \"DemoAdmin123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('admin_token', body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "31 Admin cấp Standard shop 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/2/subscription",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plan\": \"STANDARD\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "32 CSRF Owner 2",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('csrf_token', body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "33 Login OWNER shop 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"owner2.demo@example.com\",\n  \"password\": \"DemoOwner2_123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('owner2_token', body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "34 Standard chặn Top",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner2_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/top-products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));",
+              "const body = pm.response.json();",
+              "pm.test('plan_required',()=>pm.expect(body.code).to.eql('plan_required'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "35 Owner không tự cấp Pro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner2_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/2/subscription",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plan\": \"PRO\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "36 Admin cấp Pro shop 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/2/subscription",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plan\": \"PRO\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "37 Pro mở Top",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner2_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/top-products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "38 Trả shop 2 về Standard",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/2/subscription",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plan\": \"STANDARD\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "39 Admin xem báo cáo theo shop",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?shop_id=1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "40 CSRF Staff",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('csrf_token', body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "41 Login EMPLOYEE",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"staff.demo@example.com\",\n  \"password\": \"DemoStaff123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.environment.set('staff_token', body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "42 Staff xem tồn",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/inventory"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "43 Staff bị chặn báo cáo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "44 Staff không hủy đơn",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/{{pending_order_id}}/cancel",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cancel_reason\": \"Không được\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403', () => pm.response.to.have.status(403));",
+              "const body = pm.response.json();"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

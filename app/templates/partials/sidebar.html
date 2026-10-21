@@ -1,0 +1,27 @@
+<aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
+  <a class="brand" href="{{ management_url if workspace_mode == 'management' else sales_url }}"><span class="brand-symbol">S</span><span>ShopFlow<small>{{ 'QUẢN TRỊ CỬA HÀNG' if workspace_mode == 'management' else 'BÁN HÀNG TẠI QUẦY' }}</small></span></a>
+  <div class="sidebar-group">{{ 'KHÔNG GIAN QUẢN TRỊ' if workspace_mode == 'management' else 'KHÔNG GIAN BÁN HÀNG' }}</div>
+  <nav class="sidebar-nav">
+  {% if workspace_mode == 'management' %}
+    {% if user.role.role_name == 'ADMIN' %}
+    <a href="{{ scoped_page('/admin') }}" class="{{ 'active' if page == 'admin' else '' }}"><span>◈</span>Quản trị nền tảng</a>
+    <a href="/admin/shops" class="{{ 'active' if page == 'shops' else '' }}"><span>▥</span>Danh sách cửa hàng</a>
+    {% endif %}
+    {% for path,label,symbol,key in [('/dashboard','Dashboard doanh thu','◴','dashboard'),('/management/products','Quản lý sản phẩm','▦','products'),('/management/categories','Quản lý danh mục','▤','categories'),('/management/customers','Quản lý khách hàng','◎','customers')] %}
+    <a href="{{ scoped_page(path) }}" class="{{ 'active' if page == key else '' }}"><span>{{ symbol }}</span>{{ label }}</a>
+    {% endfor %}
+    <a href="{{ scoped_page('/management/branches') }}" class="{{ 'active' if page == 'branches' else '' }}"><span>▥</span>Chi nhánh</a>
+    {% if user.role.role_name == 'OWNER' %}<a href="/management/employees" class="{{ 'active' if page == 'employees' else '' }}"><span>♧</span>Quản lý nhân viên</a><a href="/management/workforce" class="{{ 'active' if page == 'workforce' else '' }}"><span>♧</span>Phân công nhân viên</a><a href="/management/attendance" class="{{ 'active' if page == 'attendance' else '' }}"><span>◷</span>Duyệt chấm công</a><a href="/management/payroll" class="{{ 'active' if page == 'payroll' else '' }}"><span>₫</span>Lương & hoa hồng · Pro</a>{% endif %}
+    {% for path,label,symbol,key in [('/reports','Báo cáo doanh thu','◴','reports'),('/management/seller-report','Doanh số người bán','♧','seller-report'),('/subscription','Gói dịch vụ','✧','subscription')] %}
+    <a href="{{ scoped_page(path) }}" class="{{ 'active' if page == key else '' }}"><span>{{ symbol }}</span>{{ label }}</a>
+    {% endfor %}
+  {% else %}
+    {% if user.role.role_name == 'EMPLOYEE' %}<a href="/attendance" class="{{ 'active' if page == 'attendance' else '' }}"><span>◷</span>Chấm công của tôi</a>{% endif %}
+    {% if user.role.role_name != 'ADMIN' %}<a href="/pos" class="{{ 'active' if page == 'pos' else '' }}"><span>▣</span>Bán hàng POS</a>{% endif %}
+    {% for path,label,symbol in [('products','Sản phẩm','▦'),('categories','Danh mục','▤'),('orders','Đơn hàng','▧'),('invoices','Hóa đơn','▱'),('inventory','Tồn kho','▥')] %}
+    <a href="{{ scoped_page('/' ~ path) }}" class="{{ 'active' if page == path else '' }}"><span>{{ symbol }}</span>{{ label }}</a>
+    {% endfor %}
+  {% endif %}
+  </nav>
+  <div class="sidebar-bottom"><span class="online-dot"></span> Phiên đang hoạt động<small>{{ role_labels[user.role.role_name] }}</small></div>
+</aside><div class="sidebar-backdrop" id="sidebarBackdrop"></div>

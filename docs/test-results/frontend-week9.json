@@ -1,0 +1,482 @@
+{
+  "executed_at": "2026-10-21T12:50:47.020Z",
+  "runner": "Playwright + Microsoft Edge",
+  "base_url": "http://127.0.0.1:50109",
+  "prefix": "W91792586992778",
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "width": 768,
+      "height": 1024
+    }
+  ],
+  "passed": 75,
+  "failed": 0,
+  "page_errors": [],
+  "csp_errors": [],
+  "server_errors": [
+    {
+      "url": "http://127.0.0.1:50109/api/products?sort=newest&page=1&per_page=20",
+      "status": 503
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "UI-desktop-owner-_pos",
+      "name": "owner /pos 1920×1080",
+      "passed": true,
+      "elapsed_ms": 784
+    },
+    {
+      "id": "UI-desktop-owner-_products",
+      "name": "owner /products 1920×1080",
+      "passed": true,
+      "elapsed_ms": 640
+    },
+    {
+      "id": "UI-desktop-owner-_categories",
+      "name": "owner /categories 1920×1080",
+      "passed": true,
+      "elapsed_ms": 611
+    },
+    {
+      "id": "UI-desktop-owner-_management_products",
+      "name": "owner /management/products 1920×1080",
+      "passed": true,
+      "elapsed_ms": 749
+    },
+    {
+      "id": "UI-desktop-owner-_management_categories",
+      "name": "owner /management/categories 1920×1080",
+      "passed": true,
+      "elapsed_ms": 608
+    },
+    {
+      "id": "UI-desktop-owner-_management_customers",
+      "name": "owner /management/customers 1920×1080",
+      "passed": true,
+      "elapsed_ms": 615
+    },
+    {
+      "id": "UI-desktop-owner-_management_employees",
+      "name": "owner /management/employees 1920×1080",
+      "passed": true,
+      "elapsed_ms": 610
+    },
+    {
+      "id": "UI-desktop-owner-_orders",
+      "name": "owner /orders 1920×1080",
+      "passed": true,
+      "elapsed_ms": 607
+    },
+    {
+      "id": "UI-desktop-owner-_invoices",
+      "name": "owner /invoices 1920×1080",
+      "passed": true,
+      "elapsed_ms": 611
+    },
+    {
+      "id": "UI-desktop-owner-_inventory",
+      "name": "owner /inventory 1920×1080",
+      "passed": true,
+      "elapsed_ms": 618
+    },
+    {
+      "id": "UI-desktop-owner-_dashboard",
+      "name": "owner /dashboard 1920×1080",
+      "passed": true,
+      "elapsed_ms": 775
+    },
+    {
+      "id": "UI-desktop-owner-_reports",
+      "name": "owner /reports 1920×1080",
+      "passed": true,
+      "elapsed_ms": 649
+    },
+    {
+      "id": "UI-desktop-owner-_subscription",
+      "name": "owner /subscription 1920×1080",
+      "passed": true,
+      "elapsed_ms": 617
+    },
+    {
+      "id": "UI-desktop-owner-_management_branches",
+      "name": "owner /management/branches 1920×1080",
+      "passed": true,
+      "elapsed_ms": 613
+    },
+    {
+      "id": "UI-desktop-owner-_management_workforce",
+      "name": "owner /management/workforce 1920×1080",
+      "passed": true,
+      "elapsed_ms": 624
+    },
+    {
+      "id": "UI-desktop-owner-_management_attendance",
+      "name": "owner /management/attendance 1920×1080",
+      "passed": true,
+      "elapsed_ms": 623
+    },
+    {
+      "id": "UI-desktop-owner-_management_payroll",
+      "name": "owner /management/payroll 1920×1080",
+      "passed": true,
+      "elapsed_ms": 636
+    },
+    {
+      "id": "UI-desktop-owner-_management_seller-report",
+      "name": "owner /management/seller-report 1920×1080",
+      "passed": true,
+      "elapsed_ms": 627
+    },
+    {
+      "id": "UI-desktop-admin-_admin_shops",
+      "name": "admin /admin/shops 1920×1080",
+      "passed": true,
+      "elapsed_ms": 713
+    },
+    {
+      "id": "UI-desktop-admin-_subscription",
+      "name": "admin /subscription?shop_id=1 1920×1080",
+      "passed": true,
+      "elapsed_ms": 630
+    },
+    {
+      "id": "UI-desktop-staff-_pos",
+      "name": "staff /pos 1920×1080",
+      "passed": true,
+      "elapsed_ms": 659
+    },
+    {
+      "id": "UI-desktop-staff-_attendance",
+      "name": "staff /attendance 1920×1080",
+      "passed": true,
+      "elapsed_ms": 638
+    },
+    {
+      "id": "UI-laptop-owner-_pos",
+      "name": "owner /pos 1366×768",
+      "passed": true,
+      "elapsed_ms": 775
+    },
+    {
+      "id": "UI-laptop-owner-_products",
+      "name": "owner /products 1366×768",
+      "passed": true,
+      "elapsed_ms": 620
+    },
+    {
+      "id": "UI-laptop-owner-_categories",
+      "name": "owner /categories 1366×768",
+      "passed": true,
+      "elapsed_ms": 615
+    },
+    {
+      "id": "UI-laptop-owner-_management_products",
+      "name": "owner /management/products 1366×768",
+      "passed": true,
+      "elapsed_ms": 727
+    },
+    {
+      "id": "UI-laptop-owner-_management_categories",
+      "name": "owner /management/categories 1366×768",
+      "passed": true,
+      "elapsed_ms": 631
+    },
+    {
+      "id": "UI-laptop-owner-_management_customers",
+      "name": "owner /management/customers 1366×768",
+      "passed": true,
+      "elapsed_ms": 608
+    },
+    {
+      "id": "UI-laptop-owner-_management_employees",
+      "name": "owner /management/employees 1366×768",
+      "passed": true,
+      "elapsed_ms": 619
+    },
+    {
+      "id": "UI-laptop-owner-_orders",
+      "name": "owner /orders 1366×768",
+      "passed": true,
+      "elapsed_ms": 618
+    },
+    {
+      "id": "UI-laptop-owner-_invoices",
+      "name": "owner /invoices 1366×768",
+      "passed": true,
+      "elapsed_ms": 606
+    },
+    {
+      "id": "UI-laptop-owner-_inventory",
+      "name": "owner /inventory 1366×768",
+      "passed": true,
+      "elapsed_ms": 605
+    },
+    {
+      "id": "UI-laptop-owner-_dashboard",
+      "name": "owner /dashboard 1366×768",
+      "passed": true,
+      "elapsed_ms": 731
+    },
+    {
+      "id": "UI-laptop-owner-_reports",
+      "name": "owner /reports 1366×768",
+      "passed": true,
+      "elapsed_ms": 651
+    },
+    {
+      "id": "UI-laptop-owner-_subscription",
+      "name": "owner /subscription 1366×768",
+      "passed": true,
+      "elapsed_ms": 616
+    },
+    {
+      "id": "UI-laptop-owner-_management_branches",
+      "name": "owner /management/branches 1366×768",
+      "passed": true,
+      "elapsed_ms": 611
+    },
+    {
+      "id": "UI-laptop-owner-_management_workforce",
+      "name": "owner /management/workforce 1366×768",
+      "passed": true,
+      "elapsed_ms": 623
+    },
+    {
+      "id": "UI-laptop-owner-_management_attendance",
+      "name": "owner /management/attendance 1366×768",
+      "passed": true,
+      "elapsed_ms": 624
+    },
+    {
+      "id": "UI-laptop-owner-_management_payroll",
+      "name": "owner /management/payroll 1366×768",
+      "passed": true,
+      "elapsed_ms": 623
+    },
+    {
+      "id": "UI-laptop-owner-_management_seller-report",
+      "name": "owner /management/seller-report 1366×768",
+      "passed": true,
+      "elapsed_ms": 621
+    },
+    {
+      "id": "UI-laptop-admin-_admin_shops",
+      "name": "admin /admin/shops 1366×768",
+      "passed": true,
+      "elapsed_ms": 682
+    },
+    {
+      "id": "UI-laptop-admin-_subscription",
+      "name": "admin /subscription?shop_id=1 1366×768",
+      "passed": true,
+      "elapsed_ms": 618
+    },
+    {
+      "id": "UI-laptop-staff-_pos",
+      "name": "staff /pos 1366×768",
+      "passed": true,
+      "elapsed_ms": 641
+    },
+    {
+      "id": "UI-laptop-staff-_attendance",
+      "name": "staff /attendance 1366×768",
+      "passed": true,
+      "elapsed_ms": 604
+    },
+    {
+      "id": "UI-tablet-owner-_pos",
+      "name": "owner /pos 768×1024",
+      "passed": true,
+      "elapsed_ms": 775
+    },
+    {
+      "id": "UI-tablet-owner-_products",
+      "name": "owner /products 768×1024",
+      "passed": true,
+      "elapsed_ms": 655
+    },
+    {
+      "id": "UI-tablet-owner-_categories",
+      "name": "owner /categories 768×1024",
+      "passed": true,
+      "elapsed_ms": 638
+    },
+    {
+      "id": "UI-tablet-owner-_management_products",
+      "name": "owner /management/products 768×1024",
+      "passed": true,
+      "elapsed_ms": 736
+    },
+    {
+      "id": "UI-tablet-owner-_management_categories",
+      "name": "owner /management/categories 768×1024",
+      "passed": true,
+      "elapsed_ms": 636
+    },
+    {
+      "id": "UI-tablet-owner-_management_customers",
+      "name": "owner /management/customers 768×1024",
+      "passed": true,
+      "elapsed_ms": 626
+    },
+    {
+      "id": "UI-tablet-owner-_management_employees",
+      "name": "owner /management/employees 768×1024",
+      "passed": true,
+      "elapsed_ms": 631
+    },
+    {
+      "id": "UI-tablet-owner-_orders",
+      "name": "owner /orders 768×1024",
+      "passed": true,
+      "elapsed_ms": 641
+    },
+    {
+      "id": "UI-tablet-owner-_invoices",
+      "name": "owner /invoices 768×1024",
+      "passed": true,
+      "elapsed_ms": 636
+    },
+    {
+      "id": "UI-tablet-owner-_inventory",
+      "name": "owner /inventory 768×1024",
+      "passed": true,
+      "elapsed_ms": 642
+    },
+    {
+      "id": "UI-tablet-owner-_dashboard",
+      "name": "owner /dashboard 768×1024",
+      "passed": true,
+      "elapsed_ms": 763
+    },
+    {
+      "id": "UI-tablet-owner-_reports",
+      "name": "owner /reports 768×1024",
+      "passed": true,
+      "elapsed_ms": 695
+    },
+    {
+      "id": "UI-tablet-owner-_subscription",
+      "name": "owner /subscription 768×1024",
+      "passed": true,
+      "elapsed_ms": 644
+    },
+    {
+      "id": "UI-tablet-owner-_management_branches",
+      "name": "owner /management/branches 768×1024",
+      "passed": true,
+      "elapsed_ms": 636
+    },
+    {
+      "id": "UI-tablet-owner-_management_workforce",
+      "name": "owner /management/workforce 768×1024",
+      "passed": true,
+      "elapsed_ms": 641
+    },
+    {
+      "id": "UI-tablet-owner-_management_attendance",
+      "name": "owner /management/attendance 768×1024",
+      "passed": true,
+      "elapsed_ms": 650
+    },
+    {
+      "id": "UI-tablet-owner-_management_payroll",
+      "name": "owner /management/payroll 768×1024",
+      "passed": true,
+      "elapsed_ms": 651
+    },
+    {
+      "id": "UI-tablet-owner-_management_seller-report",
+      "name": "owner /management/seller-report 768×1024",
+      "passed": true,
+      "elapsed_ms": 641
+    },
+    {
+      "id": "UI-tablet-admin-_admin_shops",
+      "name": "admin /admin/shops 768×1024",
+      "passed": true,
+      "elapsed_ms": 692
+    },
+    {
+      "id": "UI-tablet-admin-_subscription",
+      "name": "admin /subscription?shop_id=1 768×1024",
+      "passed": true,
+      "elapsed_ms": 655
+    },
+    {
+      "id": "UI-tablet-staff-_pos",
+      "name": "staff /pos 768×1024",
+      "passed": true,
+      "elapsed_ms": 674
+    },
+    {
+      "id": "UI-tablet-staff-_attendance",
+      "name": "staff /attendance 768×1024",
+      "passed": true,
+      "elapsed_ms": 638
+    },
+    {
+      "id": "UI-F01",
+      "name": "Toast thêm danh mục thành công, validate bắt buộc và lỗi trùng tên giữ form",
+      "passed": true,
+      "elapsed_ms": 1704
+    },
+    {
+      "id": "UI-F02",
+      "name": "Xóa danh mục có sản phẩm báo Toast lỗi và giữ dữ liệu",
+      "passed": true,
+      "elapsed_ms": 2516
+    },
+    {
+      "id": "UI-F03",
+      "name": "Alert lỗi máy chủ và tải lại danh sách sau phục hồi",
+      "passed": true,
+      "elapsed_ms": 217
+    },
+    {
+      "id": "UI-F04",
+      "name": "Alert khi mất kết nối và phục hồi không kẹt nút",
+      "passed": true,
+      "elapsed_ms": 153
+    },
+    {
+      "id": "UI-F05",
+      "name": "Standard hiển thị hạn mức và hướng nâng cấp Pro",
+      "passed": true,
+      "elapsed_ms": 891
+    },
+    {
+      "id": "UI-S01",
+      "name": "Stored XSS trong bảng, thẻ, POS và hóa đơn chỉ hiển thị văn bản",
+      "passed": true,
+      "elapsed_ms": 691
+    },
+    {
+      "id": "UI-S02",
+      "name": "Nhân viên nhập URL quản trị trực tiếp bị chặn",
+      "passed": true,
+      "elapsed_ms": 87
+    },
+    {
+      "id": "UI-F06",
+      "name": "Phiên hết hạn chuyển về đăng nhập và hiển thị sai mật khẩu",
+      "passed": true,
+      "elapsed_ms": 1179
+    },
+    {
+      "id": "UI-QA",
+      "name": "Không có lỗi JavaScript hoặc vi phạm CSP trên luồng hợp lệ",
+      "passed": true,
+      "elapsed_ms": 1
+    }
+  ]
+}

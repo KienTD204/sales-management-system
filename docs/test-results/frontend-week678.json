@@ -1,0 +1,86 @@
+{
+  "executed_at": "2026-10-21T12:47:28.358Z",
+  "runner": "Playwright + Microsoft Edge",
+  "base_url": "http://127.0.0.1:50109",
+  "prefix": "W678586817387",
+  "passed": 15,
+  "failed": 0,
+  "page_errors": [],
+  "scenarios": [
+    {
+      "name": "Dashboard dữ liệu thật, biểu đồ tháng và Top 5 Pro",
+      "passed": true,
+      "elapsed_ms": 1238
+    },
+    {
+      "name": "POS giỏ theo phiên: thêm, tăng, giảm và tải lại",
+      "passed": true,
+      "elapsed_ms": 686
+    },
+    {
+      "name": "Tiền mặt, thêm nhanh khách, giảm giá và tiền thừa chính xác",
+      "passed": true,
+      "elapsed_ms": 3348
+    },
+    {
+      "name": "Hóa đơn bán lẻ, dữ liệu snapshot và CSS in",
+      "passed": true,
+      "elapsed_ms": 481
+    },
+    {
+      "name": "Đơn hàng lọc trạng thái, chi tiết và hủy hoàn kho một lần",
+      "passed": true,
+      "elapsed_ms": 1986
+    },
+    {
+      "name": "Thanh toán QR mô phỏng, tham chiếu và xác nhận",
+      "passed": true,
+      "elapsed_ms": 1367
+    },
+    {
+      "name": "Đơn NEW → PROCESSING → COMPLETED qua giao diện",
+      "passed": true,
+      "elapsed_ms": 3418
+    },
+    {
+      "name": "Tồn kho badge xanh/vàng/đỏ, điều chỉnh và lịch sử",
+      "passed": true,
+      "elapsed_ms": 4420
+    },
+    {
+      "name": "Hai tab đối soát phiên giỏ, không ghi đè phiên bản cũ",
+      "passed": true,
+      "elapsed_ms": 2900
+    },
+    {
+      "name": "Mất phản hồi sau commit rồi thử lại không tạo hai đơn",
+      "passed": true,
+      "elapsed_ms": 1366
+    },
+    {
+      "name": "Standard chặn Top 5/CSV ở server và hiển thị nâng cấp",
+      "passed": true,
+      "elapsed_ms": 2218
+    },
+    {
+      "name": "Admin cấp gói theo shop và owner không tự cấp Pro",
+      "passed": true,
+      "elapsed_ms": 4328
+    },
+    {
+      "name": "Báo cáo ngày/tuần/tháng/năm và tải CSV Pro",
+      "passed": true,
+      "elapsed_ms": 854
+    },
+    {
+      "name": "Employee được POS/kho/đơn/hóa đơn và bị chặn báo cáo/gói/hủy",
+      "passed": true,
+      "elapsed_ms": 1285
+    },
+    {
+      "name": "Invoice giữ nguyên tên hàng sau sửa Product và giao diện mobile",
+      "passed": true,
+      "elapsed_ms": 590
+    }
+  ]
+}

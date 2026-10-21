@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% set script = 'home' %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">KHÔNG GIAN LÀM VIỆC</span><h1>{{ page_title }}</h1><p>Chào {{ user.full_name }}, cùng bắt đầu một ngày làm việc hiệu quả.</p></div><span class="welcome-mark" aria-hidden="true">✦</span></div>
+<div class="row g-3 mb-4" id="homeStats" {% if user.role.role_name == 'ADMIN' and not selected_shop %}hidden{% endif %}>
+  {% for name,label in [('products','Sản phẩm'),('categories','Danh mục'),('customers','Khách hàng')] %}<div class="col-sm-4"><a class="stat-tile" href="/management/{{ name }}{{ '?shop_id=' ~ selected_shop|urlencode if selected_shop else '' }}"><span>{{ label }}</span><strong id="stat-{{ name }}">—</strong><small>Xem và quản lý →</small></a></div>{% endfor %}
+</div>
+<div id="homeError" class="alert alert-danger d-none" role="alert"></div>
+<section class="surface p-4"><h2 class="h5">Truy cập nhanh</h2><p><a class="btn btn-primary" href="/admin/shops">Danh sách cửa hàng</a></p><div class="quick-links"><a href="/management/products{{ '?shop_id=' ~ selected_shop|urlencode if selected_shop else '' }}">▦ &nbsp; Tra cứu sản phẩm</a><a href="/management/customers{{ '?shop_id=' ~ selected_shop|urlencode if selected_shop else '' }}">◎ &nbsp; Hồ sơ khách hàng</a>{% if user.role.role_name == 'OWNER' %}<a href="/employees">♧ &nbsp; Quản lý nhân viên</a>{% endif %}</div>
+  <p class="text-muted mt-4 mb-0">Chọn ID cửa hàng để tra cứu dữ liệu, đơn hàng, hóa đơn, tồn kho và báo cáo. Mục Gói dịch vụ cho phép Admin cấp Standard/Pro và quản lý thời hạn.</p>
+</section>
+{% endblock %}

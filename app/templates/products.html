@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% set script = 'products' %}
+{% block content %}
+<div class="page-heading"><div><h1>Sản phẩm</h1><p>{{ 'Quản lý hàng hóa, giá bán và số lượng tồn trong cửa hàng.' if workspace_mode == 'management' else 'Tra cứu hàng hóa, giá bán, danh mục và số lượng sẵn có.' }}</p></div>{% if user.role.role_name == 'OWNER' and workspace_mode == 'management' %}<button class="btn btn-primary" id="addButton" type="button">＋ Thêm sản phẩm</button>{% endif %}</div>
+<section class="surface">
+  <div class="toolbar"><div><h2>Danh sách sản phẩm</h2><small id="totalLabel">Đang tải dữ liệu</small></div><div class="btn-group" role="group" aria-label="Kiểu hiển thị"><button class="btn btn-light btn-sm active" id="tableView" type="button" aria-pressed="true">▤ Bảng</button><button class="btn btn-light btn-sm" id="cardView" type="button" aria-pressed="false">▦ Thẻ</button></div></div>
+  <form id="filterForm" class="filters"><div class="row g-2 align-items-end">
+    <div class="col-lg-3 col-sm-6"><label class="form-label" for="q">Tìm sản phẩm</label><input class="form-control" id="q" name="q" maxlength="150" placeholder="Tên hoặc mã SKU…"></div>
+    <div class="col-lg-2 col-sm-6"><label class="form-label" for="categoryFilter">Danh mục</label><select class="form-select" id="categoryFilter" name="category_id"><option value="">Tất cả danh mục</option></select></div>
+    <div class="col-lg-2 col-sm-6"><label class="form-label" for="min_price">Giá từ</label><input class="form-control" id="min_price" name="min_price" type="text" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="0"></div>
+    <div class="col-lg-2 col-sm-6"><label class="form-label" for="max_price">Giá đến</label><input class="form-control" id="max_price" name="max_price" type="text" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="Không giới hạn"></div>
+    <div class="col-lg-3 col-sm-6"><label class="form-label" for="sort">Sắp xếp</label><select class="form-select" id="sort" name="sort"><option value="newest">Mới nhất</option><option value="price_asc">Giá tăng dần</option><option value="price_desc">Giá giảm dần</option><option value="name">Tên A–Z</option></select></div>
+    <div class="col-lg-3 col-sm-6"><label class="form-label" for="nameFilter">Tên sản phẩm</label><input class="form-control" id="nameFilter" name="name" maxlength="150" placeholder="Lọc riêng theo tên"></div>
+    <div class="col-lg-2 col-sm-6"><label class="form-label" for="skuFilter">Mã SKU</label><input class="form-control" id="skuFilter" name="sku" maxlength="40" placeholder="Lọc riêng theo mã"></div>
+    <div class="col-lg-3 col-sm-6"><label class="form-label" for="activeFilter">Trạng thái</label><select class="form-select" id="activeFilter" name="is_active"><option value="">Tất cả trạng thái</option><option value="true">Đang kinh doanh</option><option value="false">Ngừng kinh doanh</option></select></div>
+    <div class="col-lg-4 col-sm-6 d-flex gap-2"><button class="btn btn-outline-primary" type="submit">Áp dụng</button><button class="btn btn-light" type="button" data-reset>Xóa bộ lọc</button></div>
+  </div></form>
+  <div id="listError" class="alert alert-danger d-none list-error" role="alert"></div><div id="listStatus" class="list-status" role="status"></div>
+  <div class="table-wrap" id="productTable"><table class="table"><thead><tr><th>Sản phẩm</th><th>Danh mục</th><th>Giá bán</th><th>Tồn kho</th><th>Trạng thái</th><th class="text-end">Thao tác</th></tr></thead><tbody id="rows"></tbody></table></div><div id="productCards" class="product-grid d-none"></div>
+  {% include 'components/pagination.html' %}
+</section>
+{% if user.role.role_name == 'OWNER' and workspace_mode == 'management' %}
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editTitle" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><form id="editForm" novalidate>
+  <div class="modal-header"><h2 class="modal-title fs-5" id="editTitle">Thêm sản phẩm</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button></div>
+  <div class="modal-body"><div id="formError" class="alert alert-danger d-none" role="alert"></div><div class="row g-3">
+    <div class="col-sm-4"><label for="product_code" class="form-label">Mã sản phẩm / SKU *</label><input class="form-control" id="product_code" name="product_code" maxlength="40" required><div class="invalid-feedback">Nhập mã sản phẩm, tối đa 40 ký tự.</div></div>
+    <div class="col-sm-8"><label for="product_name" class="form-label">Tên sản phẩm *</label><input class="form-control" id="product_name" name="product_name" maxlength="150" required><div class="invalid-feedback">Nhập tên sản phẩm.</div></div>
+    <div class="col-sm-6"><label for="category_id" class="form-label">Danh mục</label><select class="form-select" id="category_id" name="category_id"><option value="">Chưa phân loại</option></select></div>
+    <div class="col-sm-6"><label for="price" class="form-label">Giá bán *</label><input class="form-control" id="price" name="price" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" maxlength="16" required placeholder="25000.00"><div class="invalid-feedback">Giá không âm, tối đa 2 chữ số thập phân.</div></div>
+    <div class="col-sm-6"><label for="stock_quantity" class="form-label">Số lượng tồn *</label><input class="form-control" id="stock_quantity" name="stock_quantity" type="number" min="0" max="2147483647" step="1" value="0" required><div class="invalid-feedback">Tồn kho phải là số nguyên không âm.</div></div>
+    <div class="col-sm-6"><label for="min_stock" class="form-label">Ngưỡng cảnh báo tồn kho</label><input class="form-control" id="min_stock" name="min_stock" type="number" min="0" max="2147483647" step="1" value="5" required><div class="invalid-feedback">Ngưỡng phải là số nguyên không âm.</div></div>
+    <div class="col-12"><label for="description" class="form-label">Mô tả</label><textarea class="form-control" id="description" name="description" rows="2" maxlength="500"></textarea></div>
+    <div class="col-12"><div class="image-upload"><label for="image" class="form-label">Ảnh đại diện</label><input class="form-control" id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp"><div class="invalid-feedback">Chọn ảnh PNG, JPG hoặc WEBP không quá 5 MiB.</div><p class="form-hint">PNG, JPG/JPEG, WEBP · Tối đa 5 MiB. Không chọn ảnh mới sẽ giữ ảnh hiện tại.</p><div class="d-flex gap-3 align-items-center mt-3"><img id="imagePreview" class="image-preview d-none" alt="Xem trước ảnh sản phẩm"><button id="removeImageButton" class="btn btn-sm btn-outline-danger d-none" type="button">Xóa ảnh hiện tại</button></div></div></div>
+    <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" id="is_active" name="is_active" type="checkbox" checked><label class="form-check-label" for="is_active">Đang kinh doanh</label></div></div>
+  </div></div><div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Hủy</button><button class="btn btn-primary" type="submit">Lưu sản phẩm</button></div>
+</form></div></div></div>
+{% endif %}
+{% endblock %}

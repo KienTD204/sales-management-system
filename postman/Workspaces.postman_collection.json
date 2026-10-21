@@ -1,0 +1,664 @@
+{
+  "info": {
+    "name": "ShopFlow — Hai giao diện, người bán và quản trị shop",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Chạy trên CSDL demo có seed. Kiểm thử mới; không đổi gói hay sửa dữ liệu nghiệp vụ."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "CSRF OWNER",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login OWNER",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{ws_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"owner.demo@example.com\",\n  \"password\": \"DemoOwner123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_owner_token\",body.data.token);",
+              "pm.test(\"Vai trò và trang chủ\",()=>{pm.expect(body.data.role_name).to.eql(\"OWNER\");pm.expect(body.redirect_url).to.eql(\"/pos\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER báo cáo người bán",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers?range=month"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Phân trang và tổng doanh số\",()=>{pm.expect(body.meta).to.have.property(\"total\");pm.expect(body.summary.total_revenue).to.be.a(\"string\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER không xem toàn nền tảng",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CSRF EMPLOYEE",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login EMPLOYEE",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{ws_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"staff.demo@example.com\",\n  \"password\": \"DemoStaff123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_employee_token\",body.data.token);",
+              "pm.test(\"Vai trò và trang chủ\",()=>{pm.expect(body.data.role_name).to.eql(\"EMPLOYEE\");pm.expect(body.redirect_url).to.eql(\"/pos\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE bị chặn báo cáo người bán",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_employee_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE bị chặn trang quản trị",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_employee_token}}"
+          }
+        ],
+        "url": "{{base_url}}/management/products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE vẫn xem sản phẩm bán hàng",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_employee_token}}"
+          }
+        ],
+        "url": "{{base_url}}/products"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CSRF ADMIN",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login ADMIN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{ws_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin.demo@example.com\",\n  \"password\": \"DemoAdmin123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_admin_token\",body.data.token);",
+              "pm.test(\"Vai trò và trang chủ\",()=>{pm.expect(body.data.role_name).to.eql(\"ADMIN\");pm.expect(body.redirect_url).to.eql(\"/admin\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN tìm danh sách shop",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops?q=owner&per_page=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Không lộ thông tin xác thực\",()=>{const text=pm.response.text();for(const key of [\"password_hash\",\"csrf_token\",\"session_id\"])pm.expect(text).not.to.include(key);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN chi tiết shop",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"ws_owner_id\",body.data.owner.user_id);",
+              "pm.test(\"Có chủ shop, thời gian và gói hiệu lực\",()=>{pm.expect(body.data.owner.username).to.be.a(\"string\");pm.expect(body.data.usage_days).to.be.at.least(0);pm.expect(body.data.subscription.effective_plan).to.be.oneOf([\"STANDARD\",\"PRO\"]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN lịch sử gói có phân trang",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/1/subscriptions?per_page=1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Meta lịch sử\",()=>pm.expect(body.meta.per_page).to.eql(1));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN xem gói hiện tại",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/subscription?shop_id=1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN shop không tồn tại",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/999999999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN báo cáo thiếu scope bị chặn",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN báo cáo đúng scope",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers?shop_id=1&range=month"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN đối soát đơn của chủ shop",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers/{{ws_owner_id}}/orders?shop_id=1&range=month"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER lọc tháng không hợp lệ",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers?month=13&year=2026"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER không tự cấp gói",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/admin/shops/1/subscription",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plan\": \"PRO\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout OWNER",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/logout"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout EMPLOYEE",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_employee_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/logout"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout ADMIN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{ws_admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/logout"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

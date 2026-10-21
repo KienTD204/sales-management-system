@@ -1,0 +1,1001 @@
+{
+  "info": {
+    "name": "Tuần 5 Thành viên A – Auth và phân quyền",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Chạy trên dữ liệu database_schema.sql. Registration tạo SHOP mới, mặc định OWNER. Cần đổi register_shop_code/username/email khi chạy lại. Script kiểm tra status, role, điều hướng, cookie, bảo vệ route và token sau logout."
+  },
+  "item": [
+    {
+      "name": "Chưa đăng nhập – 401",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/me",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Đăng ký OWNER – 201",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/register",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shop_code\": \"{{register_shop_code}}\",\n  \"shop_name\": \"Cửa hàng đăng ký Postman\",\n  \"username\": \"{{register_username}}\",\n  \"email\": \"{{register_email}}\",\n  \"full_name\": \"Chủ shop Postman\",\n  \"phone\": \"0901234567\",\n  \"password\": \"{{register_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 201) {",
+              "pm.environment.set(\"registered_user_id\", response.data.user_id);",
+              "pm.environment.set(\"registered_shop_id\", response.data.shop_id);",
+              "}",
+              "pm.test(\"Chỉ tạo OWNER\", () => pm.expect(response.data.role_name).to.eql(\"OWNER\"));",
+              "pm.test(\"Về Login sau đăng ký\", () => pm.expect(response.redirect_url).to.eql(\"/login\"));",
+              "pm.test(\"Chưa cấp phiên, không lộ mật khẩu\", () => { pm.expect(response.data).not.to.have.property(\"token\"); pm.expect(JSON.stringify(response)).not.to.include(pm.environment.get(\"register_password\")); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Đăng ký trùng – 409",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/register",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shop_code\": \"{{register_shop_code}}\",\n  \"shop_name\": \"Cửa hàng đăng ký Postman\",\n  \"username\": \"{{register_username}}\",\n  \"email\": \"{{register_email}}\",\n  \"full_name\": \"Chủ shop Postman\",\n  \"phone\": \"0901234567\",\n  \"password\": \"{{register_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\", () => pm.response.to.have.status(409));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Không nhận role ADMIN từ client – 400",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/register",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shop_code\": \"{{register_shop_code}}\",\n  \"shop_name\": \"Cửa hàng đăng ký Postman\",\n  \"username\": \"{{register_username}}\",\n  \"email\": \"{{register_email}}\",\n  \"full_name\": \"Chủ shop Postman\",\n  \"phone\": \"0901234567\",\n  \"password\": \"{{register_password}}\",\n  \"role_name\": \"ADMIN\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Đăng nhập OWNER vừa đăng ký",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{register_email}}\",\n  \"password\": \"{{register_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"owner_token\", response.data.token);",
+              "}",
+              "pm.test(\"Đúng vai trò và điều hướng\", () => { pm.expect(response.data.role_name).to.eql(\"OWNER\"); pm.expect(response.redirect_url).to.eql(\"/pos\"); });",
+              "pm.test(\"Không trả hash\", () => pm.expect(JSON.stringify(response)).not.to.include(\"password_hash\"));",
+              "pm.test(\"Cookie HttpOnly\", () => pm.expect(pm.response.headers.all().filter(h => h.key.toLowerCase() === \"set-cookie\").map(h => h.value).join(\" \")).to.include(\"HttpOnly\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER xem tài khoản",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/me",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER tạo danh mục shop mới",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/categories",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_name\": \"PostmanAuth\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER không đọc shop khác – 403",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/products?shop_id={{admin_shop_id}}",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "OWNER logout",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/logout",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Token OWNER sau logout – 401",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/me",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sai mật khẩu – 401",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{register_email}}\",\n  \"password\": \"DefinitelyWrong!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Đăng nhập EMPLOYEE bằng SĐT",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"{{staff_phone}}\",\n  \"password\": \"{{staff_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"staff_token\", response.data.token);",
+              "}",
+              "pm.test(\"Đúng vai trò và điều hướng\", () => { pm.expect(response.data.role_name).to.eql(\"EMPLOYEE\"); pm.expect(response.redirect_url).to.eql(\"/pos\"); });",
+              "pm.test(\"Không trả hash\", () => pm.expect(JSON.stringify(response)).not.to.include(\"password_hash\"));",
+              "pm.test(\"Cookie HttpOnly\", () => pm.expect(pm.response.headers.all().filter(h => h.key.toLowerCase() === \"set-cookie\").map(h => h.value).join(\" \")).to.include(\"HttpOnly\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE tra cứu sản phẩm",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/products",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE không tạo Category – 403",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/categories",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_name\": \"Denied\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE không xem Employee – 403",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/employees",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EMPLOYEE logout",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/logout",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Token EMPLOYEE sau logout – 401",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/me",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tài khoản bị khóa – 403",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{locked_email}}\",\n  \"password\": \"{{locked_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lấy CSRF trước xác thực",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/csrf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"preauth_csrf\", response.data.csrf_token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Đăng nhập ADMIN",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{preauth_csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{admin_email}}\",\n  \"password\": \"{{admin_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));",
+              "if (pm.response.code === 200) {",
+              "pm.environment.set(\"admin_token\", response.data.token);",
+              "}",
+              "pm.test(\"Đúng vai trò và điều hướng\", () => { pm.expect(response.data.role_name).to.eql(\"ADMIN\"); pm.expect(response.redirect_url).to.eql(\"/admin\"); });",
+              "pm.test(\"Không trả hash\", () => pm.expect(JSON.stringify(response)).not.to.include(\"password_hash\"));",
+              "pm.test(\"Cookie HttpOnly\", () => pm.expect(pm.response.headers.all().filter(h => h.key.toLowerCase() === \"set-cookie\").map(h => h.value).join(\" \")).to.include(\"HttpOnly\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN đọc shop chỉ định",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/products?shop_id={{admin_shop_id}}",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN không ghi Product – 403",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/products",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ADMIN logout",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/logout",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Token ADMIN sau logout – 401",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/me",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+              "const response = pm.response.json();",
+              "pm.test(\"JSON envelope\", () => pm.expect(response).to.have.property(\"status\"));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% set script = 'auth' %}
+{% block public_content %}
+<div class="auth-layout register-layout">
+  <section class="auth-story"><a href="/login" class="brand"><span class="brand-symbol">S</span><span>ShopFlow</span></a><div><span class="eyebrow">BẮT ĐẦU HÀNH TRÌNH</span><h1>Cửa hàng mới.<br>Khởi đầu gọn gàng.</h1><p>Tạo không gian riêng để quản lý sản phẩm, khách hàng và nhân viên của bạn.</p><div class="story-points"><p>✓ &nbsp; Dữ liệu riêng cho từng cửa hàng</p><p>✓ &nbsp; Tài khoản chủ cửa hàng</p><p>✓ &nbsp; Kết nối đội ngũ bán hàng</p></div></div><small>ShopFlow · Quản lý công việc mỗi ngày</small></section>
+  <section class="auth-panel"><div class="auth-form-wrap"><span class="eyebrow text-primary">TẠO KHÔNG GIAN CỦA BẠN</span><h2>Đăng ký cửa hàng</h2><p class="text-muted">Tài khoản đăng ký sẽ là chủ cửa hàng.</p><div id="authError" class="alert alert-danger d-none" role="alert"></div>
+    <form id="registerForm" novalidate><div class="row g-3">
+      <div class="col-sm-5"><label for="shop_code" class="form-label">Mã cửa hàng *</label><input id="shop_code" name="shop_code" class="form-control" maxlength="30" required placeholder="SHOP001"><div class="invalid-feedback">Nhập mã cửa hàng.</div></div>
+      <div class="col-sm-7"><label for="shop_name" class="form-label">Tên cửa hàng *</label><input id="shop_name" name="shop_name" class="form-control" maxlength="120" required><div class="invalid-feedback">Nhập tên cửa hàng.</div></div>
+      <div class="col-12"><label for="full_name" class="form-label">Họ và tên *</label><input id="full_name" name="full_name" class="form-control" maxlength="100" autocomplete="name" required><div class="invalid-feedback">Nhập họ và tên.</div></div>
+      <div class="col-sm-6"><label for="username" class="form-label">Tên tài khoản *</label><input id="username" name="username" class="form-control" maxlength="50" autocomplete="username" required><div class="invalid-feedback">Nhập tên tài khoản.</div></div>
+      <div class="col-sm-6"><label for="phone" class="form-label">Số điện thoại</label><input id="phone" name="phone" class="form-control" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="tel"><div class="invalid-feedback">Số điện thoại gồm 10 chữ số.</div></div>
+      <div class="col-12"><label for="email" class="form-label">Email *</label><input id="email" name="email" class="form-control" type="email" maxlength="120" autocomplete="email" required><div class="invalid-feedback">Nhập email hợp lệ.</div></div>
+      <div class="col-sm-6"><label for="password" class="form-label">Mật khẩu *</label><input id="password" name="password" class="form-control" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><div class="invalid-feedback">Mật khẩu từ 8 đến 128 ký tự.</div></div>
+      <div class="col-sm-6"><label for="confirm_password" class="form-label">Nhập lại mật khẩu *</label><input id="confirm_password" name="confirm_password" class="form-control" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><div class="invalid-feedback">Mật khẩu nhập lại chưa khớp.</div></div>
+    </div><button class="btn btn-primary w-100 mt-4" type="submit">Tạo cửa hàng</button></form><p class="auth-switch">Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+  </div></section>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{
+  "executed_at": "2026-10-21T12:46:56.755Z",
+  "base_url": "http://127.0.0.1:50109",
+  "runner": "Playwright + Microsoft Edge",
+  "run_prefix": "E2E586770543",
+  "passed": 18,
+  "failed": 0,
+  "page_errors": [],
+  "scenarios": [
+    {
+      "name": "Trang công khai, bảo vệ trang và validate đăng ký",
+      "passed": true,
+      "elapsed_ms": 661
+    },
+    {
+      "name": "Đăng ký → đăng nhập → trang chủ OWNER → đăng xuất",
+      "passed": true,
+      "elapsed_ms": 1360
+    },
+    {
+      "name": "Sai mật khẩu và tài khoản khóa giữ lỗi tại Login",
+      "passed": true,
+      "elapsed_ms": 2454
+    },
+    {
+      "name": "Category thêm, sửa và xóa danh mục rỗng",
+      "passed": true,
+      "elapsed_ms": 3788
+    },
+    {
+      "name": "Product tạo với ảnh PNG và render bảng/thẻ không reload",
+      "passed": true,
+      "elapsed_ms": 1278
+    },
+    {
+      "name": "Product sửa giá/tồn bằng 0, thay ảnh JPG và WEBP",
+      "passed": true,
+      "elapsed_ms": 1835
+    },
+    {
+      "name": "Upload validate client/server, lỗi trùng mã và giữ form",
+      "passed": true,
+      "elapsed_ms": 1514
+    },
+    {
+      "name": "Tìm tên/SKU, lọc danh mục/giá và phân trang server",
+      "passed": true,
+      "elapsed_ms": 2504
+    },
+    {
+      "name": "Xóa ảnh, ngừng/mở bán, chặn xóa danh mục còn sản phẩm",
+      "passed": true,
+      "elapsed_ms": 5426
+    },
+    {
+      "name": "Customer thêm/sửa, trùng SĐT, xóa mềm và khôi phục",
+      "passed": true,
+      "elapsed_ms": 5207
+    },
+    {
+      "name": "Lịch sử khách: orders/items/payments, summary và bộ lọc",
+      "passed": true,
+      "elapsed_ms": 2343
+    },
+    {
+      "name": "Employee CRUD và tạo/sửa tài khoản",
+      "passed": true,
+      "elapsed_ms": 3161
+    },
+    {
+      "name": "Khóa/mở, thu hồi phiên và đổi mật khẩu nhân viên",
+      "passed": true,
+      "elapsed_ms": 7769
+    },
+    {
+      "name": "Tạo hồ sơ + account nguyên tử qua form nhân viên",
+      "passed": true,
+      "elapsed_ms": 1439
+    },
+    {
+      "name": "EMPLOYEE: đăng nhập SĐT, sidebar/nút và API vượt quyền",
+      "passed": true,
+      "elapsed_ms": 969
+    },
+    {
+      "name": "ADMIN: scope shop, chỉ đọc và cấm Employee",
+      "passed": true,
+      "elapsed_ms": 1186
+    },
+    {
+      "name": "Tách shop, lỗi mạng, XSS và menu điện thoại",
+      "passed": true,
+      "elapsed_ms": 2259
+    },
+    {
+      "name": "Phiên bị thu hồi khi trang đang mở đưa về Login",
+      "passed": true,
+      "elapsed_ms": 416
+    }
+  ]
+}

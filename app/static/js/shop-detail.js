@@ -1,0 +1,7 @@
+import {Api,ListController,dateOnly,dateTime,escapeHtml as e,showError} from './api-client.js';
+import {shopIdentity,planState} from './shop-view.js';
+import {initShell} from './shell.js';
+const id=document.getElementById('shopDetail').dataset.id;
+const list=new ListController('/api/admin/shops/'+id+'/subscriptions',rows=>{document.getElementById('rows').innerHTML=rows.map(row=>`<tr><td>#${row.subscription_id}</td><td>${e(row.plan)}</td><td>${dateOnly(row.start_date)}</td><td>${row.end_date?dateOnly(row.end_date):'Không giới hạn'}</td><td>${e(planState[row.effective_status]||row.effective_status)}</td><td>${dateTime(row.created_at)}</td></tr>`).join('');},{scoped:false});
+async function main(){await initShell();const shop=(await Api.request('/api/admin/shops/'+id)).data;document.getElementById('shopIdentity').innerHTML=shopIdentity(shop);document.getElementById('manageShopPlan').classList.remove('d-none');document.getElementById('historySection').hidden=false;const labels={users:'Tài khoản',products:'Sản phẩm',categories:'Danh mục',customers:'Khách hàng',employees:'Nhân viên',orders:'Đơn hàng',invoices:'Hóa đơn',subscriptions:'Lần cấp gói'};document.getElementById('shopCounts').innerHTML=Object.entries(shop.counts).map(([key,value])=>`<div class="col-6 col-lg-3"><div class="stat-tile"><span>${labels[key]}</span><strong>${value}</strong></div></div>`).join('');await list.load();}
+main().catch(error=>{document.getElementById('shopIdentity').textContent='Không tải được thông tin cửa hàng.';showError(document.getElementById('detailError'),error);});

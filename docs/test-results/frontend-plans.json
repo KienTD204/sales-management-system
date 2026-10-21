@@ -1,0 +1,66 @@
+{
+  "executed_at": "2026-10-21T12:48:03.214Z",
+  "runner": "Playwright + Edge",
+  "prefix": "PL1792586865949",
+  "base_url": "http://127.0.0.1:50109",
+  "passed": 11,
+  "failed": 0,
+  "page_errors": [],
+  "scenarios": [
+    {
+      "name": "Giá Standard miễn phí / Pro 500.000 đ và mức sử dụng",
+      "passed": true,
+      "elapsed_ms": 1207
+    },
+    {
+      "name": "Pro tạo chi nhánh qua form và tạo nhân viên liên kết",
+      "passed": true,
+      "elapsed_ms": 1437
+    },
+    {
+      "name": "Phân công chi nhánh và kích hoạt chấm công bằng giao diện",
+      "passed": true,
+      "elapsed_ms": 1044
+    },
+    {
+      "name": "Nhân viên bán tại chi nhánh được phân công, hóa đơn giữ chi nhánh",
+      "passed": true,
+      "elapsed_ms": 2797
+    },
+    {
+      "name": "Vào/ra ca từ server, không mở hai ca",
+      "passed": true,
+      "elapsed_ms": 2412
+    },
+    {
+      "name": "Chủ shop sửa ca, duyệt công và xem audit",
+      "passed": true,
+      "elapsed_ms": 3760
+    },
+    {
+      "name": "Cấu hình 50.000 đ/giờ, hoa hồng 5%; xem tiền công và hóa đơn",
+      "passed": true,
+      "elapsed_ms": 447
+    },
+    {
+      "name": "Chốt tháng đã kết thúc, khóa sửa ca và giữ snapshot",
+      "passed": true,
+      "elapsed_ms": 1324
+    },
+    {
+      "name": "Standard chỉ báo cáo ngày, không có doanh số nhân viên/lương",
+      "passed": true,
+      "elapsed_ms": 1308
+    },
+    {
+      "name": "Standard hiển thị lỗi hạn mức danh mục và chặn thêm chi nhánh",
+      "passed": true,
+      "elapsed_ms": 743
+    },
+    {
+      "name": "Nhân viên bị chặn API lương, giao diện điện thoại không tràn",
+      "passed": true,
+      "elapsed_ms": 178
+    }
+  ]
+}

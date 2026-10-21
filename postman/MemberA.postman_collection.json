@@ -1,0 +1,1222 @@
+{
+  "info": {
+    "name": "Thành viên A – Modules 3 4 5 10",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Flask + MySQL theo báo cáo. Chạy Auth đầu tiên, điền owner credentials. ID được lưu tự động. Upload chọn lại file sample.png trong Postman. Các request kiểm tra lỗi có trạng thái kỳ vọng ghi trong tên."
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "01 Auth",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/health",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lấy CSRF trước Login",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/csrf",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "if (pm.response.code === 200) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"login_csrf\", data.csrf_token);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login OWNER",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-CSRF-Token",
+                "value": "{{login_csrf}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/login",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{owner_email}}\",\n  \"password\": \"{{owner_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "if (pm.response.code === 200) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"token\", data.token);",
+                  "pm.environment.set(\"csrf_token\", data.csrf_token);",
+                  "pm.environment.set(\"shop_id\", data.shop_id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Tài khoản hiện tại",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/me",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Category",
+      "item": [
+        {
+          "name": "Tạo danh mục",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/categories",
+            "description": "Kỳ vọng HTTP 201. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_name\": \"Đồ uống\",\n  \"description\": \"Danh mục demo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"category_id\", data.category_id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Danh sách danh mục",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/categories?page=1&per_page=20",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chi tiết danh mục",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/categories/{{category_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sửa danh mục",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/categories/{{category_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Đồ uống đóng gói\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Trùng tên – 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/categories",
+            "description": "Kỳ vọng HTTP 409. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_name\": \"Đồ uống\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Product",
+      "item": [
+        {
+          "name": "Tạo sản phẩm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/products",
+            "description": "Kỳ vọng HTTP 201. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_code\": \"SKU001\",\n  \"product_name\": \"Cà phê\",\n  \"category_id\": \"{{category_id}}\",\n  \"price\": \"25000.50\",\n  \"stock_quantity\": 20,\n  \"min_stock\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"product_id\", data.product_id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Tìm tên SKU danh mục khoảng giá",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/products?q=Cà&sku=SKU&category_id={{category_id}}&min_price=20000&max_price=30000&sort=price_asc&page=1&per_page=10",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chi tiết sản phẩm",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sửa giá và tồn",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": \"27000.00\",\n  \"stock_quantity\": 18\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Upload ảnh – chọn postman/sample.png",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/products/{{product_id}}/image",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": [],
+                  "contentType": "image/png"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "if (pm.response.code === 200) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"image_url\", data.image_url);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chặn xóa danh mục có sản phẩm – 409",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/categories/{{category_id}}",
+            "description": "Kỳ vọng HTTP 409. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Xóa ảnh",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/products/{{product_id}}/image",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Giá âm – 400",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 400. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": \"-1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Khoảng giá ngược – 400",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/products?min_price=30000&max_price=1000",
+            "description": "Kỳ vọng HTTP 400. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Xóa mềm sản phẩm",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Khôi phục kinh doanh",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 Customer",
+      "item": [
+        {
+          "name": "Tạo khách hàng",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/customers",
+            "description": "Kỳ vọng HTTP 201. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_code\": \"KH001\",\n  \"full_name\": \"Nguyễn An\",\n  \"phone\": \"0912345678\",\n  \"email\": \"an@example.com\",\n  \"address\": \"Bình Dương\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"customer_id\", data.customer_id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Tìm tên SĐT hoặc mã",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/customers?q=091234&page=1&per_page=20",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chi tiết khách",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sửa khách",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/customers/{{customer_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"TP Hồ Chí Minh\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SĐT trùng – 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/customers",
+            "description": "Kỳ vọng HTTP 409. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_code\": \"KH002\",\n  \"full_name\": \"Khác\",\n  \"phone\": \"0912345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lịch sử mua hàng",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}/orders",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Xóa mềm khách",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Xem hồ sơ đã xóa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}?include_deleted=true",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lịch sử vẫn truy cập được",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}/orders",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Khôi phục khách",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/customers/{{customer_id}}/restore",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 Employee",
+      "item": [
+        {
+          "name": "Tạo nhân viên và tài khoản",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/employees",
+            "description": "Kỳ vọng HTTP 201. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_code\": \"NV001\",\n  \"full_name\": \"Nguyễn Bình\",\n  \"phone\": \"0987654321\",\n  \"position\": \"Bán hàng\",\n  \"hire_date\": \"2026-10-07\",\n  \"account\": {\n    \"username\": \"{{staff_username}}\",\n    \"email\": \"{{staff_email}}\",\n    \"password\": \"{{staff_password}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+                  "if (pm.response.code === 201) {",
+                  "const data = pm.response.json().data;",
+                  "pm.environment.set(\"employee_id\", data.employee_id);",
+                  "pm.environment.set(\"staff_user_id\", data.user_id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Danh sách nhân viên",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/employees?q=NV001",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chi tiết nhân viên",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/employees/{{employee_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sửa hồ sơ",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/employees/{{employee_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"position\": \"Thu ngân\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Khóa và thu hồi mọi phiên",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/employees/{{employee_id}}/lock",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mở khóa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/employees/{{employee_id}}/unlock",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Đổi mật khẩu và thu hồi mọi phiên",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/employees/{{employee_id}}/account",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"{{staff_new_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Chặn nâng quyền – 400",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/employees/{{employee_id}}/account",
+            "description": "Kỳ vọng HTTP 400. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE ngừng làm việc và khóa",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/employees/{{employee_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Kích hoạt lại hồ sơ và tài khoản",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/employees/{{employee_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06 Kết thúc",
+      "item": [
+        {
+          "name": "Tách sản phẩm khỏi danh mục",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/products/{{product_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category_id\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Xóa danh mục rỗng",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/api/categories/{{category_id}}",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Logout – token hiện tại bị thu hồi",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/logout",
+            "description": "Kỳ vọng HTTP 200. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Token đã logout – 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/me",
+            "description": "Kỳ vọng HTTP 401. Xem docs/api.md về body, quyền và ý nghĩa trạng thái."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

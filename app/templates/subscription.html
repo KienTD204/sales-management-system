@@ -1,0 +1,21 @@
+{% extends 'base.html' %}{% set script='subscription' %}{% block content %}
+<div class="page-heading"><div><h1>Gói dịch vụ</h1><p>Chọn nhóm tính năng phù hợp với hoạt động cửa hàng.</p></div></div>
+<div id="planError" class="alert alert-danger d-none" role="alert"></div>
+{% if user.role.role_name=='ADMIN' %}
+<section class="surface p-4 mb-4"><h2 class="h5 mb-4">Cửa hàng đang chọn</h2><div id="shopIdentity" role="status">Chọn ID cửa hàng để xem thông tin chủ shop.</div></section>
+{% endif %}
+<section class="surface p-4 mb-4"><h2 class="h5">Gói đang sử dụng</h2><p class="mb-2"><strong id="currentPlan">Đang tải…</strong></p><p class="text-muted mb-0" id="planDates"></p></section>
+{% if user.role.role_name=='ADMIN' %}
+<section class="surface p-4 mb-4"><h2 class="h5">Cấp gói cho cửa hàng</h2><p class="text-muted">Đối chiếu tài khoản chủ shop ở phía trên trước khi cấp gói. Lịch sử cấp gói được giữ lại.</p>
+<form id="assignPlanForm" novalidate><fieldset id="assignFields" disabled><div class="row g-3 align-items-end">
+<div class="col-md-4"><label class="form-label" for="assignPlan">Gói</label><select class="form-select" id="assignPlan"><option value="STANDARD">Standard</option><option value="PRO">Pro</option></select></div>
+<div class="col-md-4"><label class="form-label" for="planEndDate">Ngày hết hạn UTC</label><input class="form-control" id="planEndDate" type="date"><p class="form-hint">Để trống nếu không giới hạn thời hạn.</p></div>
+<div class="col-md-4"><button class="btn btn-primary" type="submit">Cấp gói dịch vụ</button></div>
+</div></fieldset></form></section>
+{% endif %}
+<section class="surface p-4 mb-4"><h2 class="h5">Mức sử dụng của cửa hàng</h2><div id="usageGrid" class="row g-3 mt-1"></div><p id="quotaWarning" class="text-warning mt-3 mb-0" role="status"></p></section>
+<div class="pricing-grid"><section class="surface pricing-card"><span class="eyebrow">CỬA HÀNG CƠ BẢN</span><h2>Standard</h2><p id="standardPrice" class="display-6">Miễn phí</p><ul><li>Báo cáo doanh thu trong một ngày</li><li>Tối đa 5 danh mục, 50 sản phẩm đang hoạt động</li><li>3 tài khoản truy cập, tính cả chủ shop</li><li>1 chi nhánh hoạt động</li><li>Chấm công tối đa 2 nhân viên</li></ul><p>Không có báo cáo tuần/tháng/năm, doanh số người bán hoặc tính lương.</p></section>
+<section class="surface pricing-card pro-card"><span class="eyebrow">QUẢN LÝ NHÂN SỰ & PHÂN TÍCH</span><h2>Pro</h2><p id="proPrice" class="display-6">500.000 ₫</p><p id="billingCycle" class="form-hint"></p><ul><li>Doanh thu ngày, tuần, tháng, năm</li><li>Doanh số nhân viên ngày, tuần, tháng, năm</li><li>Không giới hạn danh mục, sản phẩm, tài khoản, chi nhánh</li><li>Chấm công và tính lương tối đa 30 nhân viên</li><li>Tiền công theo giờ + hoa hồng do chủ shop cấu hình</li><li>Top 5 sản phẩm và xuất báo cáo CSV</li></ul></section></div>
+<p class="text-muted mt-4">Giá công bố cho chủ shop. Chưa tích hợp thu tiền gói tự động; Admin cấp hoặc gia hạn gói sau khi đối soát.</p>
+{% if user.role.role_name!='ADMIN' %}<a class="btn btn-outline-primary mt-2" href="/reports">Xem báo cáo của cửa hàng</a><p class="form-hint mt-3">Liên hệ Admin hệ thống khi cần nâng cấp hoặc gia hạn gói.</p>{% endif %}
+{% endblock %}

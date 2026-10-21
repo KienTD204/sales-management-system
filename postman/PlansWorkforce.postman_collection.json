@@ -1,0 +1,1050 @@
+{
+  "info": {
+    "name": "ShopFlow gói / chi nhánh / chấm công / lương",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Chạy trên demo riêng có seed: shop1 Pro, shop2 Standard. Tạo dữ liệu PMPL; cần delay request ít nhất 1000ms cho ca vào/ra."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "CSRF owner",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login owner",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"owner.demo@example.com\", \"password\": \"DemoOwner123!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"owner_token\",body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pro giá và hạn mức",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/subscription"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Giá Pro\",()=>pm.expect(body.data.prices.PRO.amount).to.eql(\"500000.00\"));",
+              "pm.test(\"30 chấm công và tài khoản không giới hạn\",()=>{pm.expect(body.data.limits.attendance).to.eql(30);pm.expect(body.data.limits.accounts).to.eql(null);});",
+              "const now=new Date();pm.environment.set(\"run\",\"PMPL\"+Date.now());pm.environment.set(\"year\",now.getUTCFullYear());pm.environment.set(\"month\",now.getUTCMonth()+1);pm.environment.set(\"effective\",now.toISOString().slice(0,8)+\"01T00:00:00Z\");"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Danh sách chi nhánh",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/branches"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"branch\",body.data.find(row=>row.is_default).branch_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tạo nhân viên được chấm công",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/employees",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"employee_code\": \"{{run}}\", \"full_name\": \"{{run}}\", \"attendance_enabled\": true, \"branch_id\": \"{{branch}}\", \"account\": {\"username\": \"{{run}}\", \"email\": \"{{run}}@example.com\", \"password\": \"PlansPostman123!\"}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"employee\",body.data.employee_id);pm.environment.set(\"staff_email\",body.data.account.email);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cấu hình công/hoa hồng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/employees/{{employee}}/compensation",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"hourly_rate\": \"50000\", \"commission_rate\": \"5\", \"effective_from\": \"{{effective}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tỷ lệ hoa hồng sai bị chặn",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/employees/{{employee}}/compensation",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"hourly_rate\": \"50000\", \"commission_rate\": \"101\", \"effective_from\": \"{{effective}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CSRF staff",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{staff_email}}\", \"password\": \"PlansPostman123!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"staff_token\",body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vào ca server",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/clock-in",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"attendance\",body.data.attendance_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Không mở ca trùng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/clock-in",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>pm.response.to.have.status(409));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ra ca server",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/clock-out",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chỉ xem lịch sử mình",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/self"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Nhân viên không duyệt công",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/{{attendance}}/approve",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"approved\": true, \"reason\": \"Không có quyền\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Nhân viên không xem lương",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/payrolls"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chủ shop duyệt công",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/{{attendance}}/approve",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"approved\": true, \"reason\": \"Postman đối soát\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit đầy đủ",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/attendance/{{attendance}}/audit"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Có lịch sử duyệt\",()=>pm.expect(body.data.length).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tính dự kiến tháng hiện tại",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/payrolls/preview",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"employee_id\": \"{{employee}}\", \"year\": \"{{year}}\", \"month\": \"{{month}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Decimal và dữ liệu ca\",()=>{pm.expect(body.data.total_amount).to.be.a(\"string\");pm.expect(body.data.attendance.length).to.be.above(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chưa đóng tháng không chốt",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/payrolls/finalize",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"employee_id\": \"{{employee}}\", \"year\": \"{{year}}\", \"month\": \"{{month}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>pm.response.to.have.status(409));",
+              "const body=pm.response.json();",
+              "pm.test(\"Đúng lý do\",()=>pm.expect(body.code).to.eql(\"period_not_closed\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CSRF standard",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/csrf"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"csrf\",body.data.csrf_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login standard",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRF-Token",
+            "value": "{{csrf}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"owner2.demo@example.com\", \"password\": \"DemoOwner2_123!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.environment.set(\"standard_token\",body.data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard miễn phí / hạn mức",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/subscription"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();",
+              "pm.test(\"Standard đúng hạn mức\",()=>{pm.expect(body.data.prices.STANDARD.amount).to.eql(\"0.00\");pm.expect(body.data.limits.products).to.eql(50);pm.expect(body.data.limits.categories).to.eql(5);pm.expect(body.data.limits.accounts).to.eql(3);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard báo cáo ngày",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?range=day"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard cấm week",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?range=week"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard cấm month",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?range=month"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard cấm year",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/revenue?range=year"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard không doanh số nhân viên",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/reports/sellers"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard không tính lương",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/payrolls/preview",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard không thêm chi nhánh",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/branches",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"branch_code\": \"{{run}}\", \"branch_name\": \"Không được tạo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>pm.response.to.have.status(409));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout owner",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{owner_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/logout",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{staff_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/logout",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout standard",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{standard_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/logout",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const body=pm.response.json();"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

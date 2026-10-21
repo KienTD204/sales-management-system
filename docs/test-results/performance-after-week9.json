@@ -1,0 +1,101 @@
+{
+  "executed_at": "2026-10-21T12:42:34.961189+00:00",
+  "database": "member_a_test_perf_week9",
+  "fixture_orders": 20,
+  "repetitions": 5,
+  "measurements": [
+    {
+      "endpoint": "orders",
+      "rows": 1,
+      "sql_queries": [
+        11,
+        11,
+        11,
+        11,
+        11
+      ],
+      "elapsed_ms": [
+        26.33,
+        11.99,
+        10.71,
+        10.79,
+        10.62
+      ],
+      "median_ms": 10.79
+    },
+    {
+      "endpoint": "orders",
+      "rows": 20,
+      "sql_queries": [
+        11,
+        11,
+        11,
+        11,
+        11
+      ],
+      "elapsed_ms": [
+        15.33,
+        17.03,
+        15.24,
+        16.16,
+        15.84
+      ],
+      "median_ms": 15.84
+    },
+    {
+      "endpoint": "invoices",
+      "rows": 1,
+      "sql_queries": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "elapsed_ms": [
+        10.34,
+        6.66,
+        5.89,
+        5.63,
+        6.12
+      ],
+      "median_ms": 6.12
+    },
+    {
+      "endpoint": "invoices",
+      "rows": 20,
+      "sql_queries": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "elapsed_ms": [
+        7.16,
+        6.99,
+        6.83,
+        7.27,
+        7.26
+      ],
+      "median_ms": 7.16
+    }
+  ],
+  "explain": [
+    {
+      "id": 1,
+      "select_type": "SIMPLE",
+      "table": "orders",
+      "partitions": null,
+      "type": "ALL",
+      "possible_keys": "ix_orders_shop_customer_date,ix_orders_shop_seller_date",
+      "key": null,
+      "key_len": null,
+      "ref": null,
+      "rows": 20,
+      "filtered": 100.0,
+      "Extra": "Using where; Using filesort"
+    }
+  ],
+  "note": "Local MySQL + Flask test client; query counts include authentication. No production throughput claim."
+}
