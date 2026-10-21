@@ -1,6 +1,6 @@
 # ShopFlow
 
-Website quản lý bán hàng Flask + MySQL, bản **1.1.0 — Tuần 9**, ngày 21/10/2026. Đã tích hợp Backend và Frontend cho 13 module, hai không gian bán hàng/quản trị, quản trị nền tảng, Standard/Pro, chi nhánh, chấm công và lương.
+Website quản lý bán hàng Flask + MySQL, bản **1.1.1 — Tuần 9**, ngày 21/10/2026. Đã tích hợp Backend và Frontend cho 13 module, hai không gian bán hàng/quản trị, quản trị nền tảng, Standard/Pro, chi nhánh, chấm công và lương. Bản 1.1.1 chuẩn hóa xuống dòng khi đóng gói để manifest khớp cả ZIP và bản clone Git; mã nghiệp vụ và phạm vi kiểm thử của bản 1.1.0 giữ nguyên, phụ lục Word ghi nhận lần kiểm thử đó.
 
 Kết quả chạy tại máy phát triển: **237 ca Python, 131 kịch bản trình duyệt, 100 request Postman với 134 assertions đạt**. Xem [Test Cases và Test Log](docs/week9-test-cases.md), [kết quả và phạm vi](docs/validation-week9.md), [phụ lục Word](report/Phu-luc-Kiem-thu-Tuan-9.docx). Các kết quả này xác nhận phạm vi đã kiểm thử, không bảo đảm mọi lỗi trong mọi môi trường đều đã được loại bỏ.
 

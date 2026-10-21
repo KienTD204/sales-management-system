@@ -1,5 +1,11 @@
 # Lịch sử phát hành
 
+## 1.1.1 ngày 21 tháng 10 năm 2026
+
+- Chuẩn hóa LF cho file văn bản trước khi tính manifest, khớp quy ước Git trên Windows và Linux.
+- Ghi CSV với xuống dòng LF; kiểm tra lại SHA256 cả ZIP và bản lưu trực tiếp từ Git.
+- Không đổi mã nghiệp vụ hoặc schema so với bản 1.1.0; phụ lục giữ kết quả kiểm thử nghiệp vụ đã xác nhận.
+
 ## 1.1.0 ngày 21 tháng 10 năm 2026
 
 - Hoàn thiện kiểm thử Tuần 9 cho 13 module và các phần chi nhánh, chấm công, lương.

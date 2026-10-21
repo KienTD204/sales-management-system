@@ -8,6 +8,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT=Path(__file__).resolve().parents[1]
 EXCLUDED={'.git','.venv','venv','__pycache__','.pytest_cache','node_modules','instance','htmlcov','playwright-report'}
+TEXT_EXTENSIONS={'.py','.sql','.js','.cjs','.html','.css','.md','.txt','.yml','.yaml','.json','.xml','.csv','.ini','.mmd','.svg','.example'}
 
 
 def release_files():
@@ -39,9 +40,15 @@ def main():
             if not (file.parent/target.split('#')[0]).exists():missing.append((str(file.relative_to(ROOT)),target))
     assert not missing,missing
     files=release_files()
+    # Khớp eol=lf của Git kể cả log/CSV được tạo trên Windows.
+    for file in files:
+        if file.suffix in TEXT_EXTENSIONS or file.name in {'VERSION','.gitignore','.gitattributes'}:
+            raw=file.read_bytes()
+            normalized=raw.replace(b'\r\n',b'\n')
+            if normalized!=raw:file.write_bytes(normalized)
     hashes={file.relative_to(ROOT).as_posix():hashlib.sha256(file.read_bytes()).hexdigest() for file in files}
     manifest=ROOT/'RELEASE-MANIFEST.sha256'
-    manifest.write_text(''.join(f'{value}  {name}\n' for name,value in hashes.items()),encoding='utf-8')
+    manifest.write_text(''.join(f'{value}  {name}\n' for name,value in hashes.items()),encoding='utf-8',newline='\n')
     output=Path(args.output).resolve();output.parent.mkdir(parents=True,exist_ok=True)
     with ZipFile(output,'w',ZIP_DEFLATED) as archive:
         for file in files+[manifest]:archive.write(file,Path(ROOT.name)/file.relative_to(ROOT))

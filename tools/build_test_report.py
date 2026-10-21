@@ -67,14 +67,14 @@ def main():
         postman.append({'suite':name,'requests':data['requests']['total'],'assertions':data['assertions']['total']})
     logs=py+browser
     with (RESULTS/'week9-test-log.csv').open('w',encoding='utf-8-sig',newline='') as stream:
-        writer=csv.DictWriter(stream,fieldnames=list(logs[0]));writer.writeheader();writer.writerows(logs)
+        writer=csv.DictWriter(stream,fieldnames=list(logs[0]),lineterminator='\n');writer.writeheader();writer.writerows(logs)
     cases=[]
     for ident,module,condition,steps,expected,pattern in CASES:
         matched=[row for row in logs if re.search(pattern,row['case'])]
         assert matched,(ident,pattern)
         cases.append({'id':ident,'module':module,'preconditions':condition,'steps':steps,'expected':expected,'actual':f"PASS {len(matched)}/{len(matched)} kịch bản liên quan",'evidence':'; '.join(sorted(set(row['evidence'] for row in matched)))})
     with (RESULTS/'week9-test-cases.csv').open('w',encoding='utf-8-sig',newline='') as stream:
-        writer=csv.DictWriter(stream,fieldnames=list(cases[0]));writer.writeheader();writer.writerows(cases)
+        writer=csv.DictWriter(stream,fieldnames=list(cases[0]),lineterminator='\n');writer.writeheader();writer.writerows(cases)
     summary={'generated_at':datetime.now(timezone.utc).isoformat(),'python_passed':len(py),'browser_passed':len(browser),'week9_browser_passed':sum(row['suite']=='frontend-week9' for row in browser),'postman_requests':sum(row['requests'] for row in postman),'postman_assertions':sum(row['assertions'] for row in postman),'test_case_groups':len(cases),'failures':0,'modules':13,'postman_suites':postman}
     (RESULTS/'week9-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
     lines=['# Test Cases và Test Log Tuần 9','',f"Thời điểm tổng hợp UTC: {summary['generated_at']}. Kết quả: {len(py)} Python, {len(browser)} browser, {summary['postman_requests']} request Postman / {summary['postman_assertions']} assertions. Không có ca thất bại trong lần chạy này.",'','Các nhóm bên dưới có thể cùng tham chiếu một ca tự động; không cộng cột số ca để tính tổng. Test Log CSV liệt kê riêng từng ca Python và từng kịch bản browser. Postman có log tổng hợp theo collection.','','| ID | Phạm vi | Điều kiện và thao tác | Kết quả mong đợi | Kết quả thực tế |','|---|---|---|---|---|']
