@@ -10,10 +10,10 @@ Kết quả chạy tại máy phát triển: **237 ca Python, 131 kịch bản t
 |---|---|
 | 1 Authentication | Đăng ký shop/OWNER; đăng nhập email hoặc SĐT; đăng xuất; hash scrypt; phiên phía server |
 | 2 User và Role | ADMIN/OWNER/EMPLOYEE; kiểm tra quyền ở HTML và API; CSRF với cookie |
-| 3 Product | CRUD/xóa mềm; tìm tên/SKU; lọc danh mục/giá; phân trang; ảnh PNG/JPG/WEBP |
+| 3 Product | CRUD/xóa mềm; tìm tên/SKU; lọc danh mục/giá; phân trang; ảnh PNG/JPG/WEBP; tạo và in tem QR |
 | 4 Category | CRUD; chặn xóa khi còn sản phẩm |
 | 5 Customer | CRUD; xóa mềm/khôi phục; tìm kiếm; lịch sử đơn/dòng hàng/thanh toán |
-| 6 Cart và Sales | Giỏ theo phiên; kiểm tra version và giá server; POS |
+| 6 Cart và Sales | Giỏ theo phiên; kiểm tra version và giá server; POS; quét mã vạch/QR bằng máy quét hoặc camera |
 | 7 Order | NEW → PROCESSING → COMPLETED hoặc CANCELLED; chống xử lý lặp |
 | 8 Payment | CASH hoặc BANK_TRANSFER mô phỏng; tiền khách đưa/tiền thừa; tham chiếu |
 | 9 Invoice | Mã duy nhất; snapshot sản phẩm/người bán/chi nhánh; bản in CSS |
@@ -136,6 +136,24 @@ Chỉ có sau khi nhập seed vào database demo riêng:
 Thông tin demo được công khai để học tập; tạo tài khoản/mật khẩu riêng khi vận hành.
 
 ## API và tích hợp
+
+### Tạo và in tem QR sản phẩm
+
+Sau khi thêm sản phẩm tại **Quản lý sản phẩm**, hệ thống tự hiện tem QR chứa SKU, tên hàng và giá bán. Chọn **1–100 tem** rồi bấm **In tem QR** để mở bản in A4 và hộp thoại in của trình duyệt. Bản in chỉ mở hộp thoại sau khi ảnh QR đã tải xong; có nút in lại và điều chỉnh số lượng. Tem rộng 50 mm, dùng tỷ lệ in 100%.
+
+Nút **In QR** trong bảng/thẻ cho phép in lại cả sản phẩm đã có. QR được tạo từ SKU hiện tại, nên sau khi sửa SKU phải in lại tem; tem cũ không còn đại diện cho SKU mới. Chỉ OWNER của shop được xem/in tem. Không thay cấu trúc CSDL và không cần dịch vụ tạo QR bên ngoài.
+
+API `GET /api/products/<id>/qr-label` trả thông tin sản phẩm, ảnh PNG dạng `qr_data_url` và `print_url`; trang `/management/products/<id>/qr-label?copies=1` hiển thị bản in, `autoprint=true` mở hộp thoại in sau khi tải QR. Xem [chi tiết và kiểm thử tem QR](docs/product-qr-labels.md). Chạy `npm run test:product-qr` trên server demo riêng để kiểm thử giao diện.
+
+### Quét sản phẩm tại POS
+
+- Trong `/pos`, chọn ô **Quét mã sản phẩm**, dùng máy quét USB/Bluetooth ở chế độ bàn phím và cấu hình ký tự kết thúc **Enter**. Cũng có thể nhập SKU rồi bấm **Thêm bằng mã**.
+- Bấm **Quét camera**, cho phép trình duyệt truy cập camera và đưa mã vạch/QR vào khung hình. Mỗi lần mở đọc một mã rồi tự tắt camera để tránh thêm trùng. Camera cần HTTPS hoặc localhost; bộ giải mã được lưu cục bộ, không cần CDN.
+- Nội dung mã phải là **product_code (SKU)** đã lưu, tối đa 40 ký tự; giữ cả số 0 đầu mã. Nếu dùng mã in sẵn trên bao bì, lưu mã đó vào trường SKU của sản phẩm. Không cần nâng cấp cấu trúc CSDL.
+- Mỗi lần quét thêm 1 đơn vị; quét lại cùng mã tăng số lượng. Quét nhanh được xử lý tuần tự, độc lập với bộ lọc/phân trang danh mục. Mã không tồn tại, hàng ngừng bán hoặc thiếu tồn sẽ báo lỗi và không thêm hàng.
+- API `POST /api/cart/items` nhận `quantity`, `version` và **đúng một** trong `product_id` hoặc `product_code`. Mã được so khớp toàn bộ trong cửa hàng của phiên hiện tại, theo quy tắc so sánh SKU của CSDL; các kiểm tra tồn kho và version giỏ vẫn áp dụng.
+
+Kiểm thử bổ sung: `python -m pytest -q tests/test_pos_scanning.py` trên MySQL thử nghiệm như hướng dẫn bên dưới. Kiểm thử giao diện: `npm run test:pos-scan` với server demo riêng; các biến `E2E_BASE_URL`, `E2E_CHANNEL`, `E2E_OWNER_EMAIL`, `E2E_OWNER_PASSWORD` có thể ghi đè cấu hình demo.
 
 [Quy ước API](docs/api-conventions.md), [Auth và CRUD](docs/api.md), [POS/đơn/kho/báo cáo](docs/api-week678.md), [hai giao diện và Admin](docs/workspaces-sellers-admin.md), [gói và nhân sự](docs/plans-workforce.md).
 

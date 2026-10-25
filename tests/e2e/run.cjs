@@ -8,7 +8,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '../..');
 const baseURL = process.env.E2E_BASE_URL || 'http://127.0.0.1:5000';
 const screenshots = process.env.E2E_SCREENSHOTS_DIR ? path.resolve(process.env.E2E_SCREENSHOTS_DIR) : path.join(root, 'docs/screenshots');
-const reportPath = path.join(root, 'docs/test-results/frontend-e2e.json');
+const reportPath = process.env.E2E_REPORT_PATH ? path.resolve(process.env.E2E_REPORT_PATH) : path.join(root, 'docs/test-results/frontend-e2e.json');
 const run = 'E2E' + Date.now().toString().slice(-9);
 const results = []; const errors = []; let browser; let page; let context;
 let productId, categoryId, employeeId, csrf;
@@ -74,6 +74,7 @@ async function api(url,method='GET',data) {
     await page.goto('/management/products'); let navigations=0; const handler=()=>navigations++; page.on('framenavigated',handler);
     await page.locator('#addButton').click(); await page.locator('#product_code').fill(run+'-SP'); await page.locator('#product_name').fill('Sản phẩm tích hợp '+run); await page.locator('#category_id').selectOption(String(categoryId));
     await page.locator('#price').fill('25000.50'); await page.locator('#stock_quantity').fill('12'); await page.locator('#image').setInputFiles(png); await expect(page.locator('#imagePreview')).toBeVisible(); await shot('05-product-modal'); await save('Lưu sản phẩm');
+    await expect(page.locator('#qrLabelModal')).toBeVisible(); await expect(page.locator('#qrProductCode')).toHaveText(run+'-SP'); await expect(page.locator('#qrLabelPreview')).toBeVisible(); await page.locator('#qrLabelModal .btn-close').click(); await expect(page.locator('#qrLabelModal')).toBeHidden();
     const row=page.locator('#rows tr').filter({hasText:run+'-SP'}); await expect(row).toBeVisible(); productId=Number(await row.getAttribute('data-id')); await expect(row.locator('img')).toBeVisible();
     assert.equal(navigations,0); page.off('framenavigated',handler);
     await page.locator('#cardView').click(); await expect(page.locator('#productCards')).toBeVisible(); await shot('06-product-cards'); await page.locator('#tableView').click(); await shot('07-product-table');

@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, g, request
+from flask import Blueprint, current_app, g, request, url_for
 from sqlalchemy import or_, select
 
 from .auth import require_roles
@@ -6,6 +6,7 @@ from .common import ApiError, commit, contains, paginate, query_text, record, sc
 from .extensions import db
 from .images import remove_image, save_image
 from .models import Category, InventoryTransaction, OrderItem, Product
+from .product_labels import product_qr_data_url
 from .validation import body, boolean, integer, money, string_fields
 from .entitlements import assert_room, serialized
 
@@ -74,6 +75,20 @@ def list_products():
 @require_roles("ADMIN", "OWNER", "EMPLOYEE")
 def detail(product_id):
     return success(record(scoped(Product, product_id)))
+
+
+@bp.get("/<int:product_id>/qr-label")
+@require_roles("OWNER")
+def qr_label(product_id):
+    product = scoped(Product, product_id)
+    return success({
+        "product_id": product.product_id,
+        "product_code": product.product_code,
+        "product_name": product.product_name,
+        "price": format(product.price, ".2f"),
+        "qr_data_url": product_qr_data_url(product.product_code),
+        "print_url": url_for("frontend.print_product_qr", product_id=product.product_id),
+    })
 
 
 @bp.post("")

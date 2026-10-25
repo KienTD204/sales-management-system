@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ page_title }} · {{ product.product_name }}</title>
+  <link rel="stylesheet" href="{{ url_for('frontend.static', filename='css/product-qr-print.css') }}">
+</head>
+<body data-autoprint="{{ 'true' if auto_print else 'false' }}">
+  <header class="label-toolbar">
+    <div><h1>In tem QR sản phẩm</h1><p>Mã QR chứa SKU để quét tại POS. Tem rộng 50 mm; chọn khổ A4 và tỷ lệ 100% khi in.</p></div>
+    <form method="get" class="label-controls"><label for="copies">Số tem</label><input id="copies" name="copies" type="number" min="1" max="100" step="1" value="{{ copies }}" required><button type="submit">Cập nhật số tem</button></form>
+    <button id="printLabels" type="button" disabled>In tem QR</button><a href="{{ url_for('frontend.manage_products') }}">Quản lý sản phẩm</a>
+    <p id="printError" role="alert" hidden></p>
+  </header>
+  <main class="qr-label-sheet" aria-label="{{ copies }} tem QR sản phẩm">
+    {% for _ in range(copies) %}
+    <article class="product-qr-label">
+      <h2>{{ product.product_name }}</h2>
+      <img class="label-qr-image" src="{{ qr_data_url }}" alt="Mã QR sản phẩm {{ product.product_code }}" width="300" height="300">
+      <p class="label-sku">{{ product.product_code }}</p>
+      <p class="label-price">{{ product.price|vnd }} ₫</p>
+    </article>
+    {% endfor %}
+  </main>
+  <script src="{{ url_for('frontend.static', filename='js/product-qr-print.js') }}"></script>
+</body>
+</html>

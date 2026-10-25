@@ -162,6 +162,21 @@ def manage_categories():
     return render_template("categories.html", page_title="Quản lý danh mục", page="categories")
 
 
+@bp.get("/management/products/<int:product_id>/qr-label")
+@page_required("OWNER")
+def print_product_qr(product_id):
+    from .common import scoped
+    from .models import Product
+    from .product_labels import product_qr_data_url
+    from .validation import boolean, integer
+    product = scoped(Product, product_id)
+    copies = integer(request.args.get("copies", "1"), "copies", minimum=1, maximum=100)
+    auto_print = boolean(request.args.get("autoprint", "false"), "autoprint")
+    return render_template("product-qr-print.html", product=product, copies=copies,
+                           qr_data_url=product_qr_data_url(product.product_code),
+                           auto_print=auto_print, page_title="Tem QR sản phẩm")
+
+
 @bp.get("/management/seller-report")
 @page_required("OWNER", "ADMIN")
 def seller_report():

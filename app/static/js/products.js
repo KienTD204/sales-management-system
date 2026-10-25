@@ -4,9 +4,10 @@ import { initShell } from './shell.js';
 const owner = document.body.dataset.role === 'OWNER' && document.body.dataset.workspace === 'management'; const categories = new Map(); let current = null; let preview = null; let saving = false;
 const form = document.getElementById('editForm'); const formError = document.getElementById('formError');
 const fields = ['product_code','product_name','category_id','price','stock_quantity','min_stock','description','is_active'];
+let createdQrProductId = null, qrVersion = 0, qrPrintUrl = '';
 function actions(product) {
   if (!owner) return '<span class="text-muted">Chỉ xem</span>';
-  return `<div class="table-actions"><button class="btn btn-light btn-sm" data-action="edit" data-id="${product.product_id}">Sửa</button><button class="btn btn-sm ${product.is_active ? 'btn-outline-danger' : 'btn-outline-primary'}" data-action="${product.is_active ? 'deactivate' : 'activate'}" data-id="${product.product_id}">${product.is_active ? 'Ngừng bán' : 'Mở bán'}</button></div>`;
+  return `<div class="table-actions"><button class="btn btn-light btn-sm" data-action="edit" data-id="${product.product_id}">Sửa</button><button class="btn btn-outline-primary btn-sm" data-action="qr" data-id="${product.product_id}">In QR</button><button class="btn btn-sm ${product.is_active ? 'btn-outline-danger' : 'btn-outline-primary'}" data-action="${product.is_active ? 'deactivate' : 'activate'}" data-id="${product.product_id}">${product.is_active ? 'Ngừng bán' : 'Mở bán'}</button></div>`;
 }
 function render(rows) {
   document.getElementById('rows').innerHTML = rows.map(product => {
@@ -19,6 +20,43 @@ function render(rows) {
   }).join('');
 }
 const list = new ListController('/api/products', render);
+function updateQrPrintLink() {
+  const copies = document.getElementById('qrLabelCopies'), link = document.getElementById('printQrLabel');
+  const valid = !!qrPrintUrl && copies.checkValidity();
+  link.classList.toggle('disabled', !valid); link.setAttribute('aria-disabled', String(!valid)); link.tabIndex = valid ? 0 : -1;
+  if (valid) link.href = qrPrintUrl + '?' + new URLSearchParams({copies: copies.value, autoprint: 'true'});
+  else link.removeAttribute('href');
+}
+async function openQrLabel(productId) {
+  const version = ++qrVersion;
+  qrPrintUrl = ''; clearError(document.getElementById('qrLabelError'));
+  document.getElementById('qrLabelCopies').value = '1'; updateQrPrintLink();
+  document.getElementById('qrLabelPreview').classList.add('d-none');
+  document.getElementById('qrLabelStatus').textContent = 'Đang tạo tem QR…'; modal('qrLabelModal').show();
+  try {
+    const {data} = await Api.request(`/api/products/${productId}/qr-label`);
+    if (version !== qrVersion) return;
+    document.getElementById('qrProductName').textContent = data.product_name;
+    document.getElementById('qrProductCode').textContent = data.product_code;
+    document.getElementById('qrProductPrice').textContent = money(data.price);
+    const image = document.getElementById('qrProductImage'); image.src = data.qr_data_url; await image.decode();
+    if (version !== qrVersion) return;
+    qrPrintUrl = data.print_url; updateQrPrintLink();
+    document.getElementById('qrLabelPreview').classList.remove('d-none');
+    document.getElementById('qrLabelStatus').textContent = '';
+  } catch (error) {
+    if (version !== qrVersion) return;
+    document.getElementById('qrLabelStatus').textContent = '';
+    showError(document.getElementById('qrLabelError'), error);
+  }
+}
+document.getElementById('qrLabelCopies')?.addEventListener('input', updateQrPrintLink);
+document.getElementById('printQrLabel')?.addEventListener('click', event => {
+  if (!qrPrintUrl || !document.getElementById('qrLabelCopies').reportValidity()) event.preventDefault();
+});
+document.getElementById('qrLabelModal')?.addEventListener('hidden.bs.modal', () => {
+  qrVersion++; qrPrintUrl = ''; document.getElementById('qrProductImage').removeAttribute('src'); updateQrPrintLink();
+});
 async function loadCategories() {
   categories.clear(); let page = 1; let pages = 1;
   do {
@@ -64,7 +102,9 @@ form?.addEventListener('submit', async event => {
   if (file) body.append('image', file);
   saving = true; const button = form.querySelector('[type="submit"]'); busy(button, true); clearError(formError);
   try {
+    const creating = !current;
     const result = await Api.request(current ? `/api/products/${current.product_id}` : '/api/products', {method: current ? 'PATCH' : 'POST', body});
+    if (creating) createdQrProductId = result.data.product_id;
     modal('editModal').hide(); toast(result.message); await list.load();
   } catch (error) { showError(formError, error); }
   finally { saving = false; busy(button, false); }
@@ -77,11 +117,15 @@ document.getElementById('removeImageButton')?.addEventListener('click', async ev
   try { const result = await Api.request(`/api/products/${current.product_id}/image`, {method: 'DELETE'}); current.image_url = null; updatePreview(''); toast(result.message); await list.load(); }
   catch (error) { showError(formError, error); } finally { busy(button, false); }
 });
-document.getElementById('editModal')?.addEventListener('hidden.bs.modal', releasePreview);
+document.getElementById('editModal')?.addEventListener('hidden.bs.modal', () => {
+  releasePreview();
+  if (createdQrProductId !== null) { const id = createdQrProductId; createdQrProductId = null; openQrLabel(id); }
+});
 for (const container of [document.getElementById('rows'),document.getElementById('productCards')]) container.addEventListener('click', async event => {
   const button = event.target.closest('[data-action]'); if (!button || button.disabled) return;
   const id = Number(button.dataset.id); const product = list.rows.find(row => row.product_id === id); if (!product) return;
   const action = button.dataset.action;
+  if (action === 'qr') { await openQrLabel(id); return; }
   if (action !== 'edit' && !await confirmAction(`${action === 'deactivate' ? 'Ngừng kinh doanh' : 'Mở bán lại'} sản phẩm “${product.product_name}”?`, action === 'deactivate' ? 'Ngừng bán' : 'Mở bán')) return;
   busy(button, true);
   try {

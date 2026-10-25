@@ -10,8 +10,8 @@ from .auth import require_roles
 from .commerce import cancel_order, complete_order, invoice_snapshot, lock_user, money, new_order, quote_items, receipt, serialize_order, serialize_orders, store_receipt
 from .common import ApiError, paginate, query_text, record, scoped, shop_scope, success
 from .extensions import db
-from .models import Customer, Invoice, Order, ShoppingCart
-from .validation import body, integer
+from .models import Customer, Invoice, Order, Product, ShoppingCart
+from .validation import body, integer, text
 
 bp = Blueprint("sales", __name__, url_prefix="/api")
 
@@ -46,9 +46,19 @@ def cart_detail():
 @bp.post("/cart/items")
 @require_roles("OWNER", "EMPLOYEE")
 def add_item():
-    data = body({"product_id", "quantity", "version"}, {"product_id", "quantity", "version"})
+    data = body({"product_id", "product_code", "quantity", "version"}, {"quantity", "version"})
+    if ("product_id" in data) == ("product_code" in data):
+        raise ApiError("Cần đúng một trong hai trường product_id hoặc product_code")
     cart = locked_cart(); check_version(cart, data)
-    pid = integer(data["product_id"], "product_id", minimum=1); quantity = integer(data["quantity"], "quantity", minimum=1)
+    if "product_code" in data:
+        code = text(data["product_code"], "product_code", 40)
+        # So khớp toàn bộ mã trong shop, không tìm gần đúng theo tên/SKU.
+        pid = db.session.scalar(select(Product.product_id).where(Product.shop_id == cart.shop_id, Product.product_code == code))
+        if pid is None:
+            raise ApiError("Không tìm thấy sản phẩm có mã này trong cửa hàng", 404, "product_not_found")
+    else:
+        pid = integer(data["product_id"], "product_id", minimum=1)
+    quantity = integer(data["quantity"], "quantity", minimum=1)
     rows = {item["product_id"]: item["quantity"] for item in cart.items}
     rows[pid] = integer(rows.get(pid, 0) + quantity, "quantity", minimum=1)
     if len(rows) > 100:

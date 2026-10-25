@@ -9,7 +9,9 @@
     "test:workspaces": "node tests/e2e/workspaces.cjs",
     "test:plans": "node tests/e2e/plans.cjs",
     "test:week9": "node tests/e2e/week9.cjs",
-    "test:all-ui": "npm run test:e2e && npm run test:week678 && npm run test:workspaces && npm run test:plans && npm run test:week9",
+    "test:pos-scan": "node tests/e2e/pos-scanning.cjs",
+    "test:product-qr": "node tests/e2e/product-qr-labels.cjs",
+    "test:all-ui": "npm run test:e2e && npm run test:week678 && npm run test:workspaces && npm run test:plans && npm run test:week9 && npm run test:pos-scan && npm run test:product-qr",
     "test:postman": "node tools/run_postman.cjs"
   },
   "devDependencies": { "playwright": "1.62.1", "newman": "6.2.2" }

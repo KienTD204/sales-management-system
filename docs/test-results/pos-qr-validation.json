@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-25",
+  "environment": {
+    "python": "3.12",
+    "database": "MySQL 8.4 (isolated test databases)",
+    "browser": "Microsoft Edge / Playwright 1.62.1"
+  },
+  "python": {
+    "passed": 280,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 102.87
+  },
+  "browser": {
+    "passed": 39,
+    "qr_labels": {
+      "results": [
+        {
+          "name": "Thêm sản phẩm tự hiện tem QR",
+          "passed": true,
+          "elapsed_ms": 2324
+        },
+        {
+          "name": "QR tạo tự động giải mã đúng SKU và giữ số 0 đầu mã",
+          "passed": true,
+          "elapsed_ms": 90
+        },
+        {
+          "name": "Chặn số tem không hợp lệ và mở trang in đủ số lượng",
+          "passed": true,
+          "elapsed_ms": 362
+        },
+        {
+          "name": "Bản in có QR đủ ảnh, ẩn thanh công cụ và cho in lại",
+          "passed": true,
+          "elapsed_ms": 163
+        },
+        {
+          "name": "In lại QR từ bảng và thẻ sản phẩm",
+          "passed": true,
+          "elapsed_ms": 3027
+        },
+        {
+          "name": "Sửa SKU cập nhật QR khi in lại và không tự hiện tem sau sửa",
+          "passed": true,
+          "elapsed_ms": 1721
+        },
+        {
+          "name": "Lỗi tạo tem không mất sản phẩm và có thể mở lại",
+          "passed": true,
+          "elapsed_ms": 1695
+        },
+        {
+          "name": "Tem QR hiển thị trong màn hình điện thoại",
+          "passed": true,
+          "elapsed_ms": 434
+        },
+        {
+          "name": "QR của sản phẩm mới thêm quét được vào POS",
+          "passed": true,
+          "elapsed_ms": 247
+        }
+      ],
+      "errors": [],
+      "policyErrors": []
+    },
+    "pos_scanning": {
+      "results": [
+        {
+          "name": "Đăng nhập và sẵn sàng quét",
+          "passed": true,
+          "elapsed_ms": 707
+        },
+        {
+          "name": "Quét độc lập với bộ lọc và giữ cách chọn hàng bằng tay",
+          "passed": true,
+          "elapsed_ms": 896
+        },
+        {
+          "name": "Quét nhanh liên tiếp không mất lượt và chờ xong mới thanh toán",
+          "passed": true,
+          "elapsed_ms": 1349
+        },
+        {
+          "name": "Mã sai, mã dài và hết hàng không làm thay đổi giỏ",
+          "passed": true,
+          "elapsed_ms": 112
+        },
+        {
+          "name": "Quét lại sau lỗi và chọn sản phẩm bằng tay",
+          "passed": true,
+          "elapsed_ms": 937
+        },
+        {
+          "name": "Từ chối quyền camera có thông báo và vẫn quét bằng máy quét được",
+          "passed": true,
+          "elapsed_ms": 1286
+        },
+        {
+          "name": "Đóng khi đang chờ quyền camera giải phóng luồng đến muộn",
+          "passed": true,
+          "elapsed_ms": 709
+        },
+        {
+          "name": "Camera đọc QR thật, chỉ thêm một lần và tự tắt",
+          "passed": true,
+          "elapsed_ms": 1182
+        },
+        {
+          "name": "Camera đóng thủ công tắt toàn bộ track",
+          "passed": true,
+          "elapsed_ms": 1087
+        },
+        {
+          "name": "Camera đọc mã vạch EAN-13 thật",
+          "passed": true,
+          "elapsed_ms": 998
+        },
+        {
+          "name": "Bố cục điện thoại hiển thị đủ ô quét và nút camera",
+          "passed": true,
+          "elapsed_ms": 427
+        },
+        {
+          "name": "Thanh toán sản phẩm đã quét và tạo hóa đơn",
+          "passed": true,
+          "elapsed_ms": 857
+        }
+      ],
+      "errors": [],
+      "policyErrors": []
+    },
+    "crud_regression": {
+      "passed": 18,
+      "failed": 0,
+      "scenarios": [
+        {
+          "name": "Trang công khai, bảo vệ trang và validate đăng ký",
+          "passed": true,
+          "elapsed_ms": 540
+        },
+        {
+          "name": "Đăng ký → đăng nhập → trang chủ OWNER → đăng xuất",
+          "passed": true,
+          "elapsed_ms": 828
+        },
+        {
+          "name": "Sai mật khẩu và tài khoản khóa giữ lỗi tại Login",
+          "passed": true,
+          "elapsed_ms": 931
+        },
+        {
+          "name": "Category thêm, sửa và xóa danh mục rỗng",
+          "passed": true,
+          "elapsed_ms": 4079
+        },
+        {
+          "name": "Product tạo với ảnh PNG và render bảng/thẻ không reload",
+          "passed": true,
+          "elapsed_ms": 2318
+        },
+        {
+          "name": "Product sửa giá/tồn bằng 0, thay ảnh JPG và WEBP",
+          "passed": true,
+          "elapsed_ms": 2049
+        },
+        {
+          "name": "Upload validate client/server, lỗi trùng mã và giữ form",
+          "passed": true,
+          "elapsed_ms": 1297
+        },
+        {
+          "name": "Tìm tên/SKU, lọc danh mục/giá và phân trang server",
+          "passed": true,
+          "elapsed_ms": 2524
+        },
+        {
+          "name": "Xóa ảnh, ngừng/mở bán, chặn xóa danh mục còn sản phẩm",
+          "passed": true,
+          "elapsed_ms": 5114
+        },
+        {
+          "name": "Customer thêm/sửa, trùng SĐT, xóa mềm và khôi phục",
+          "passed": true,
+          "elapsed_ms": 4906
+        },
+        {
+          "name": "Lịch sử khách: orders/items/payments, summary và bộ lọc",
+          "passed": true,
+          "elapsed_ms": 2901
+        },
+        {
+          "name": "Employee CRUD và tạo/sửa tài khoản",
+          "passed": true,
+          "elapsed_ms": 2974
+        },
+        {
+          "name": "Khóa/mở, thu hồi phiên và đổi mật khẩu nhân viên",
+          "passed": true,
+          "elapsed_ms": 7394
+        },
+        {
+          "name": "Tạo hồ sơ + account nguyên tử qua form nhân viên",
+          "passed": true,
+          "elapsed_ms": 949
+        },
+        {
+          "name": "EMPLOYEE: đăng nhập SĐT, sidebar/nút và API vượt quyền",
+          "passed": true,
+          "elapsed_ms": 689
+        },
+        {
+          "name": "ADMIN: scope shop, chỉ đọc và cấm Employee",
+          "passed": true,
+          "elapsed_ms": 931
+        },
+        {
+          "name": "Tách shop, lỗi mạng, XSS và menu điện thoại",
+          "passed": true,
+          "elapsed_ms": 2087
+        },
+        {
+          "name": "Phiên bị thu hồi khi trang đang mở đưa về Login",
+          "passed": true,
+          "elapsed_ms": 426
+        }
+      ],
+      "page_errors": []
+    }
+  },
+  "notes": [
+    "QR images were decoded with ZXing.",
+    "window.print was stubbed in browser tests.",
+    "Camera scanning used synthetic streams containing real QR / EAN-13 images.",
+    "No physical printer or scanner was tested."
+  ]
+}

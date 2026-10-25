@@ -1,5 +1,20 @@
 # Lịch sử phát hành
 
+## Bổ sung tem QR sản phẩm ngày 25 tháng 10 năm 2026
+
+- Tự hiện tem QR sau khi thêm sản phẩm trong quản trị; chọn 1–100 bản in và mở hộp thoại in khi ảnh đã sẵn sàng.
+- Thêm nút In QR cho bảng/thẻ sản phẩm, bản in A4 và tem rộng 50 mm chứa tên, SKU, giá bán.
+- QR chứa SKU hiện tại và quét được tại POS. Chỉ OWNER của shop được xem/in; không đổi schema hoặc gửi SKU sang dịch vụ ngoài.
+- Xác nhận 280 ca Python và 9 kịch bản trình duyệt tem QR đạt; các thao tác in được mô phỏng, QR được giải mã bằng bộ đọc thực tế.
+
+## Bổ sung POS ngày 25 tháng 10 năm 2026
+
+- Thêm sản phẩm bằng mã vạch/QR chứa SKU, qua máy quét USB/Bluetooth hoặc camera.
+- Xử lý tuần tự các lần quét, tự tăng số lượng khi quét lại và kiểm tra tồn kho/quyền cửa hàng tại server.
+- Camera đọc một mã rồi tắt; xử lý từ chối quyền và đóng trong lúc đang mở camera. Bộ đọc ZXing lưu cục bộ, không cần CDN.
+- Giữ cách chọn sản phẩm thủ công và cấu trúc CSDL hiện có. Bổ sung kiểm thử API và trình duyệt cho quét mã.
+- Xác nhận tại máy phát triển: 261 ca Python và 12 kịch bản trình duyệt đạt. Camera dùng luồng hình mô phỏng với mã QR/EAN-13 thật; chưa xác nhận thiết bị quét hoặc camera vật lý.
+
 ## 1.1.1 ngày 21 tháng 10 năm 2026
 
 - Chuẩn hóa LF cho file văn bản trước khi tính manifest, khớp quy ước Git trên Windows và Linux.
