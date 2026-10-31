@@ -6,7 +6,7 @@ from .common import ApiError, commit, contains, paginate, query_text, record, sc
 from .extensions import db
 from .images import remove_image, save_image
 from .models import Category, InventoryTransaction, OrderItem, Product
-from .product_labels import product_qr_data_url
+from .product_labels import product_barcode_data_url, product_qr_data_url
 from .validation import body, boolean, integer, money, string_fields
 from .entitlements import assert_room, serialized
 
@@ -87,6 +87,7 @@ def qr_label(product_id):
         "product_name": product.product_name,
         "price": format(product.price, ".2f"),
         "qr_data_url": product_qr_data_url(product.product_code),
+        "barcode_data_url": product_barcode_data_url(product.product_code),
         "print_url": url_for("frontend.print_product_qr", product_id=product.product_id),
     })
 

@@ -4,7 +4,7 @@ import { initShell } from './shell.js';
 const owner = document.body.dataset.role === 'OWNER' && document.body.dataset.workspace === 'management'; const categories = new Map(); let current = null; let preview = null; let saving = false;
 const form = document.getElementById('editForm'); const formError = document.getElementById('formError');
 const fields = ['product_code','product_name','category_id','price','stock_quantity','min_stock','description','is_active'];
-let createdQrProductId = null, qrVersion = 0, qrPrintUrl = '';
+let createdQrProductId = null, qrVersion = 0, qrPrintUrl = '', currentLabelData = null, selectedLabelType = 'qr';
 function actions(product) {
   if (!owner) return '<span class="text-muted">Chỉ xem</span>';
   return `<div class="table-actions"><button class="btn btn-light btn-sm" data-action="edit" data-id="${product.product_id}">Sửa</button><button class="btn btn-outline-primary btn-sm" data-action="qr" data-id="${product.product_id}">In QR</button><button class="btn btn-sm ${product.is_active ? 'btn-outline-danger' : 'btn-outline-primary'}" data-action="${product.is_active ? 'deactivate' : 'activate'}" data-id="${product.product_id}">${product.is_active ? 'Ngừng bán' : 'Mở bán'}</button></div>`;
@@ -24,24 +24,42 @@ function updateQrPrintLink() {
   const copies = document.getElementById('qrLabelCopies'), link = document.getElementById('printQrLabel');
   const valid = !!qrPrintUrl && copies.checkValidity();
   link.classList.toggle('disabled', !valid); link.setAttribute('aria-disabled', String(!valid)); link.tabIndex = valid ? 0 : -1;
-  if (valid) link.href = qrPrintUrl + '?' + new URLSearchParams({copies: copies.value, autoprint: 'true'});
-  else link.removeAttribute('href');
+  if (valid) {
+    const params = new URLSearchParams({copies: copies.value, autoprint: 'true', type: selectedLabelType});
+    link.href = qrPrintUrl + '?' + params.toString();
+  } else link.removeAttribute('href');
+}
+async function applyLabelType(type) {
+  selectedLabelType = type;
+  if (!currentLabelData) return;
+  const image = document.getElementById('qrProductImage');
+  const preview = document.getElementById('qrLabelPreview');
+  const isBarcode = type === 'barcode';
+  preview.classList.toggle('is-barcode', isBarcode);
+  image.alt = isBarcode ? `Mã vạch sản phẩm ${currentLabelData.product_code}` : `Mã QR sản phẩm ${currentLabelData.product_code}`;
+  image.src = isBarcode ? (currentLabelData.barcode_data_url || currentLabelData.qr_data_url) : currentLabelData.qr_data_url;
+  await image.decode().catch(() => {});
+  updateQrPrintLink();
 }
 async function openQrLabel(productId) {
   const version = ++qrVersion;
-  qrPrintUrl = ''; clearError(document.getElementById('qrLabelError'));
-  document.getElementById('qrLabelCopies').value = '1'; updateQrPrintLink();
+  qrPrintUrl = ''; currentLabelData = null; clearError(document.getElementById('qrLabelError'));
+  document.getElementById('qrLabelCopies').value = '1';
+  const radio = document.querySelector(`input[name="labelTypeChoice"][value="${selectedLabelType}"]`);
+  if (radio) radio.checked = true;
+  updateQrPrintLink();
   document.getElementById('qrLabelPreview').classList.add('d-none');
-  document.getElementById('qrLabelStatus').textContent = 'Đang tạo tem QR…'; modal('qrLabelModal').show();
+  document.getElementById('qrLabelStatus').textContent = 'Đang tạo tem…'; modal('qrLabelModal').show();
   try {
     const {data} = await Api.request(`/api/products/${productId}/qr-label`);
     if (version !== qrVersion) return;
+    currentLabelData = data;
     document.getElementById('qrProductName').textContent = data.product_name;
     document.getElementById('qrProductCode').textContent = data.product_code;
     document.getElementById('qrProductPrice').textContent = money(data.price);
-    const image = document.getElementById('qrProductImage'); image.src = data.qr_data_url; await image.decode();
+    qrPrintUrl = data.print_url;
+    await applyLabelType(selectedLabelType);
     if (version !== qrVersion) return;
-    qrPrintUrl = data.print_url; updateQrPrintLink();
     document.getElementById('qrLabelPreview').classList.remove('d-none');
     document.getElementById('qrLabelStatus').textContent = '';
   } catch (error) {
@@ -51,11 +69,14 @@ async function openQrLabel(productId) {
   }
 }
 document.getElementById('qrLabelCopies')?.addEventListener('input', updateQrPrintLink);
+document.querySelectorAll('input[name="labelTypeChoice"]').forEach(radio => {
+  radio.addEventListener('change', () => applyLabelType(radio.value));
+});
 document.getElementById('printQrLabel')?.addEventListener('click', event => {
   if (!qrPrintUrl || !document.getElementById('qrLabelCopies').reportValidity()) event.preventDefault();
 });
 document.getElementById('qrLabelModal')?.addEventListener('hidden.bs.modal', () => {
-  qrVersion++; qrPrintUrl = ''; document.getElementById('qrProductImage').removeAttribute('src'); updateQrPrintLink();
+  qrVersion++; qrPrintUrl = ''; currentLabelData = null; document.getElementById('qrProductImage').removeAttribute('src'); updateQrPrintLink();
 });
 async function loadCategories() {
   categories.clear(); let page = 1; let pages = 1;

@@ -34,11 +34,20 @@
   </div></div><div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Hủy</button><button class="btn btn-primary" type="submit">Lưu sản phẩm</button></div>
 </form></div></div></div>
 <div class="modal fade" id="qrLabelModal" tabindex="-1" aria-labelledby="qrLabelTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-  <div class="modal-header"><h2 class="modal-title fs-5" id="qrLabelTitle">Tem QR sản phẩm</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng tem QR"></button></div>
-  <div class="modal-body"><div id="qrLabelError" class="alert alert-danger d-none" role="alert"></div><p id="qrLabelStatus" role="status">Đang tạo tem QR…</p>
-    <div id="qrLabelPreview" class="product-qr-preview d-none"><strong id="qrProductName"></strong><img id="qrProductImage" alt="Mã QR để quét sản phẩm tại POS" width="220" height="220"><span id="qrProductCode"></span><strong id="qrProductPrice"></strong></div>
-    <label for="qrLabelCopies" class="form-label mt-3">Số lượng tem cần in</label><input class="form-control" id="qrLabelCopies" type="number" min="1" max="100" step="1" value="1" required><p class="form-hint">Từ 1 đến 100 tem. QR chứa đúng SKU của sản phẩm và có thể quét tại POS.</p>
-  </div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button><a id="printQrLabel" class="btn btn-primary disabled" role="button" aria-disabled="true" target="_blank" rel="noopener">In tem QR</a></div>
+  <div class="modal-header"><h2 class="modal-title fs-5" id="qrLabelTitle">Tem mã sản phẩm (QR / Mã vạch)</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng tem"></button></div>
+  <div class="modal-body"><div id="qrLabelError" class="alert alert-danger d-none" role="alert"></div><p id="qrLabelStatus" role="status">Đang tạo tem…</p>
+    <div class="mb-3">
+      <label class="form-label d-block fw-semibold mb-2">Chọn kiểu mã in:</label>
+      <div class="btn-group w-100" role="group" aria-label="Kiểu mã">
+        <input type="radio" class="btn-check" name="labelTypeChoice" id="labelTypeQr" value="qr" checked autocomplete="off">
+        <label class="btn btn-outline-primary" for="labelTypeQr">Mã QR vuông</label>
+        <input type="radio" class="btn-check" name="labelTypeChoice" id="labelTypeBarcode" value="barcode" autocomplete="off">
+        <label class="btn btn-outline-primary" for="labelTypeBarcode">Mã vạch (Barcode)</label>
+      </div>
+    </div>
+    <div id="qrLabelPreview" class="product-qr-preview d-none"><strong id="qrProductName"></strong><img id="qrProductImage" alt="Mã để quét sản phẩm tại POS"><span id="qrProductCode"></span><strong id="qrProductPrice"></strong></div>
+    <label for="qrLabelCopies" class="form-label mt-3">Số lượng tem cần in</label><input class="form-control" id="qrLabelCopies" type="number" min="1" max="100" step="1" value="1" required><p class="form-hint">Từ 1 đến 100 tem. Mã QR thích hợp dán nhãn vuông; Mã vạch Code 128 thích hợp quét thanh toán tại quầy đại lý, siêu thị.</p>
+  </div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button><a id="printQrLabel" class="btn btn-primary disabled" role="button" aria-disabled="true" target="_blank" rel="noopener">In tem mã</a></div>
 </div></div></div>
 {% endif %}
 {% endblock %}

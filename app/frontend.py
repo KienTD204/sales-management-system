@@ -167,14 +167,20 @@ def manage_categories():
 def print_product_qr(product_id):
     from .common import scoped
     from .models import Product
-    from .product_labels import product_qr_data_url
+    from .product_labels import product_barcode_data_url, product_qr_data_url
     from .validation import boolean, integer
     product = scoped(Product, product_id)
     copies = integer(request.args.get("copies", "1"), "copies", minimum=1, maximum=100)
     auto_print = boolean(request.args.get("autoprint", "false"), "autoprint")
+    label_type = request.args.get("type", "qr").lower().strip()
+    if label_type not in ("qr", "barcode"):
+        label_type = "qr"
+    label_data_url = product_barcode_data_url(product.product_code) if label_type == "barcode" else product_qr_data_url(product.product_code)
+    page_title = "Tem mã vạch sản phẩm" if label_type == "barcode" else "Tem QR sản phẩm"
     return render_template("product-qr-print.html", product=product, copies=copies,
-                           qr_data_url=product_qr_data_url(product.product_code),
-                           auto_print=auto_print, page_title="Tem QR sản phẩm")
+                           label_type=label_type,
+                           qr_data_url=label_data_url,
+                           auto_print=auto_print, page_title=page_title)
 
 
 @bp.get("/management/seller-report")

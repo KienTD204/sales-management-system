@@ -100,3 +100,22 @@ def test_product_qr_management_controls_only_in_management(owner, staff, qr_prod
     assert 'id="qrLabelModal"' in owner[0].get('/management/products').get_data(as_text=True)
     assert 'id="qrLabelModal"' not in owner[0].get('/products').get_data(as_text=True)
     assert 'id="qrLabelModal"' not in staff[0].get('/products').get_data(as_text=True)
+
+
+def test_product_barcode_label_options(owner, qr_product):
+    client, headers = owner
+    route = f"/api/products/{qr_product['product_id']}/qr-label"
+    response = client.get(route, headers=headers)
+    assert response.status_code == 200
+    data = response.json['data']
+    assert 'barcode_data_url' in data and data['barcode_data_url'].startswith('data:image/png;base64,')
+    with Image.open(io.BytesIO(base64.b64decode(data['barcode_data_url'].split(',', 1)[1]))) as image:
+        assert image.format == 'PNG' and image.width > image.height
+
+    barcode_print = client.get(f"/management/products/{qr_product['product_id']}/qr-label?type=barcode&copies=2")
+    assert barcode_print.status_code == 200
+    html = barcode_print.get_data(as_text=True)
+    assert 'product-barcode-label' in html
+    assert 'label-barcode-image' in html
+    assert 'In tem mã vạch' in html
+    assert html.count('product-barcode-label') == 2

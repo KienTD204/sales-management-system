@@ -7,16 +7,29 @@
 </head>
 <body data-autoprint="{{ 'true' if auto_print else 'false' }}">
   <header class="label-toolbar">
-    <div><h1>In tem QR sản phẩm</h1><p>Mã QR chứa SKU để quét tại POS. Tem rộng 50 mm; chọn khổ A4 và tỷ lệ 100% khi in.</p></div>
-    <form method="get" class="label-controls"><label for="copies">Số tem</label><input id="copies" name="copies" type="number" min="1" max="100" step="1" value="{{ copies }}" required><button type="submit">Cập nhật số tem</button></form>
-    <button id="printLabels" type="button" disabled>In tem QR</button><a href="{{ url_for('frontend.manage_products') }}">Quản lý sản phẩm</a>
+    <div>
+      <h1>{{ 'In tem mã vạch sản phẩm' if label_type == 'barcode' else 'In tem QR sản phẩm' }}</h1>
+      <p>{{ 'Mã vạch 1D Code 128 chứa SKU để quét thanh toán tại quầy đại lý, siêu thị. Tem rộng 50 mm; chọn khổ A4 và tỷ lệ 100% khi in.' if label_type == 'barcode' else 'Mã QR chứa SKU để quét tại POS. Tem rộng 50 mm; chọn khổ A4 và tỷ lệ 100% khi in.' }}</p>
+    </div>
+    <form method="get" class="label-controls">
+      <label for="labelType">Kiểu mã</label>
+      <select id="labelType" name="type" onchange="this.form.submit()">
+        <option value="qr" {% if label_type != 'barcode' %}selected{% endif %}>Mã QR vuông</option>
+        <option value="barcode" {% if label_type == 'barcode' %}selected{% endif %}>Mã vạch (Barcode)</option>
+      </select>
+      <label for="copies">Số tem</label>
+      <input id="copies" name="copies" type="number" min="1" max="100" step="1" value="{{ copies }}" required>
+      <button type="submit">Cập nhật</button>
+    </form>
+    <button id="printLabels" type="button" disabled>{{ 'In tem mã vạch' if label_type == 'barcode' else 'In tem QR' }}</button>
+    <a href="{{ url_for('frontend.manage_products') }}">Quản lý sản phẩm</a>
     <p id="printError" role="alert" hidden></p>
   </header>
-  <main class="qr-label-sheet" aria-label="{{ copies }} tem QR sản phẩm">
+  <main class="qr-label-sheet" aria-label="{{ copies }} {{ 'tem mã vạch sản phẩm' if label_type == 'barcode' else 'tem QR sản phẩm' }}">
     {% for _ in range(copies) %}
-    <article class="product-qr-label">
+    <article class="product-qr-label{% if label_type == 'barcode' %} product-barcode-label{% endif %}">
       <h2>{{ product.product_name }}</h2>
-      <img class="label-qr-image" src="{{ qr_data_url }}" alt="Mã QR sản phẩm {{ product.product_code }}" width="300" height="300">
+      <img class="label-qr-image{% if label_type == 'barcode' %} label-barcode-image{% endif %}" src="{{ qr_data_url }}" alt="{{ 'Mã vạch' if label_type == 'barcode' else 'Mã QR' }} sản phẩm {{ product.product_code }}">
       <p class="label-sku">{{ product.product_code }}</p>
       <p class="label-price">{{ product.price|vnd }} ₫</p>
     </article>
